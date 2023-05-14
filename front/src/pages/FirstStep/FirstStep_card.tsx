@@ -1,0 +1,180 @@
+import React, { useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../../store/hooks'
+import { OriginalStaf, Weight, Length, Width, Height, Volume, changeVolume, changePurchasePrice } from '../../store/slices/goodsSlice';
+import { changeWeight, changeLength, changeWidth, changeHeight, changeCommission, changeAveragePrice } from '../../store/slices/goodsSlice';
+
+import FirstStep_card_table_WBrent from './FirstStep_card_table_WBrent';
+import FirstStep_card_costCalculation from './FirstStep_card_costCalculation';
+
+
+interface IDataOption_item {
+    name: string,
+    value: string
+}
+
+
+const FirstStep_card = () => {
+    const data = useAppSelector(OriginalStaf)
+
+    const weight = useAppSelector(Weight)
+
+    const length = useAppSelector(Length)
+    const width = useAppSelector(Width)
+    const height = useAppSelector(Height)
+    const volume = useAppSelector(Volume)
+
+    const dispatch = useAppDispatch()
+
+    const inputHandler_length = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeLength(Number(e.target.value)))
+    const inputHandler_width = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWidth(Number(e.target.value)))
+    const inputHandler_height = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeHeight(Number(e.target.value)))
+
+
+    const dimensions = (options: { name: string, value: string }[]) => {
+        const arr: { name: string, value: string }[] = []
+        const subArr: string[] = ['Длина упаковки', 'Ширина упаковки', 'Высота упаковки']
+        subArr.forEach(characteristic => {
+            const target = options.find((x: IDataOption_item) => x.name === characteristic)
+            if (target) arr.push(target)
+        })
+        return arr
+    }
+
+
+
+    const missingСharacteristics = (options: { name: string, value: string }[]) => {
+        const arr: string[] = []
+        !options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)') && arr.push('Вес товара с упаковкой (г)')
+        !options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)') && arr.push('Вес товара без упаковки (г)')
+        !options.find((x: IDataOption_item) => x.name === 'Длина упаковки') && arr.push('Длина упаковки')
+        !options.find((x: IDataOption_item) => x.name === 'Ширина упаковки') && arr.push('Ширина упаковки')
+        !options.find((x: IDataOption_item) => x.name === 'Высота упаковки') && arr.push('Высота упаковки')
+        return arr
+
+    }
+
+
+    useEffect(() => {
+        length && width && height && dispatch(changeVolume(length * 0.01 * width * 0.01 * height * 0.01))
+    }, [length, width, height, dispatch])
+
+    useEffect(() => {
+        if (data) {
+            if (data.options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)')) {
+                dispatch(changeWeight(+data.options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)').value.split(' ')[0]))
+            } else if (data.options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)')) {
+                dispatch(changeWeight(+data.options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)').value.split(' ')[0] + 40))
+            } else {
+                dispatch(changeWeight(0))
+            }
+
+            data.options.find((x: IDataOption_item) => x.name === 'Длина упаковки') ?
+                dispatch(changeLength(+data.options.find((x: IDataOption_item) => x.name === 'Длина упаковки').value.split(' ')[0]))
+                : dispatch(changeLength(0))
+            data.options.find((x: IDataOption_item) => x.name === 'Ширина упаковки') ?
+                dispatch(changeWidth(+data.options.find((x: IDataOption_item) => x.name === 'Ширина упаковки').value.split(' ')[0]))
+                : dispatch(changeWidth(0))
+            data.options.find((x: IDataOption_item) => x.name === 'Высота упаковки') ?
+                dispatch(changeHeight(+data.options.find((x: IDataOption_item) => x.name === 'Высота упаковки').value.split(' ')[0]))
+                : dispatch(changeHeight(0))
+        }
+
+
+        dispatch(changeCommission(0))
+        dispatch(changeAveragePrice(0))
+        dispatch(changePurchasePrice(0))
+    }, [data, dispatch])
+
+
+
+
+    return (
+        <article className='relative flex flex-col gap-[10px] p-2  text-[grey] text-[.8rem] '>
+            <span className='text-[blue] font-[700] text-[1.6rem]'>{data && data.imt_name}</span>
+
+            <div className='flex gap-[10px] '>
+                {/* <div className='flex-1 flex flex-col p-2
+                  rounded border-solid border-[blue] border-[2px]'>
+                    {data.options.map((x: IDataOption_item) =>
+                        <div key={x.name} className='flex hover:text-[blue] hover:font-[500]'>
+                            <div className='flex-1'>
+                                {x.name}
+                            </div>
+                            <div className='flex-1'>
+                                {x.value}
+                            </div>
+                        </div>)}
+                </div> */}
+                <div className='flex-1 rounded-[5px]  flex flex-col gap-[10px] w-full'>
+                    <div className=' flex gap-[10px]'>
+                        <div className='flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
+                            <span className='text-[blue] font-[700]'>Основные параметры</span>
+
+                            <div className='flex'>
+                                <div className='w-[50%]'>
+                                    Габариты (см)
+                                </div>
+                                <div className='flex-1 flex'>
+                                    <input onInput={inputHandler_length} type="number" className='w-[100%]' defaultValue={length?length:''} />
+                                    <input onInput={inputHandler_width} type="number" className='w-[100%]' defaultValue={width?width:''} />
+                                    <input onInput={inputHandler_height} type="number" className='w-[100%]' defaultValue={height?height:''} />
+                                </div>
+                            </div>
+
+
+                            {dimensions(data.options).length === 3 && <div className='flex' >
+                                <div className='w-[50%]'>Объем (м³)</div>
+                                <input type="number" className='flex-auto' value={volume} />
+                            </div>}
+
+
+                            <div className='flex'>
+                                <div className='w-[50%]'>
+                                    Вес с упаковкой (г)
+                                </div>
+                                <div className='flex-1 flex'>
+                                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWeight(Number(e.target.value)))} defaultValue={weight?weight:''} />
+                                </div>
+                            </div>
+                            <div className='flex'>
+                                <div className='w-[50%]'>
+                                    Средняя цена
+                                </div>
+                                <div className='flex-1 flex'>
+                                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeAveragePrice(Number(e.target.value)))} />
+                                </div>
+                            </div>
+                            <div className='flex'>
+                                <div className='w-[50%]'>
+                                    Комиссия (%)
+                                </div>
+                                <div className='flex-1 flex'>
+                                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value) / 100))} />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className='flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
+                            <span className='text-[blue] font-[700]'>Отсутствующие параметры:</span>
+                            {missingСharacteristics(data.options).map((mis: string) => <span key={mis} className='text-[red]'>{mis}</span>)}
+
+                        </div>
+                    </div>
+
+
+                    <FirstStep_card_table_WBrent />
+                    <FirstStep_card_costCalculation />
+                </div>
+
+            </div>
+
+            {/* <div className='absolute w-full top-[100%] left-[0] bg-[blue] p-[5px] text-[1.2rem] text-[white] rounded'>
+                {data.nm_id}
+            </div> */}
+
+        </article>
+
+    );
+};
+
+export default FirstStep_card;
