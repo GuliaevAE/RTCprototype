@@ -16,15 +16,14 @@ function App() {
 
   return (
     <>
-      {/* <Router> */}
+      <Router>
         <Header></Header>
         <main className=''>
-        <FirstStep />
-          {/* <Routes > */}
-            {/* <Route path="/" element={<FirstStep />} /> */}
-          {/* </Routes> */}
+          <Routes >
+            <Route path="/" element={<FirstStep />} />
+          </Routes>
         </main>
-      {/* </Router>  */}
+      </Router> 
       </>
   )
 }
