@@ -115,9 +115,9 @@ const FirstStep_card = () => {
                                     Габариты (см)
                                 </div>
                                 <div className='flex-1 flex'>
-                                    <input onInput={inputHandler_length} type="number" className='w-[100%]' defaultValue={length?length:''} />
-                                    <input onInput={inputHandler_width} type="number" className='w-[100%]' defaultValue={width?width:''} />
-                                    <input onInput={inputHandler_height} type="number" className='w-[100%]' defaultValue={height?height:''} />
+                                    <input onInput={inputHandler_length} type="number" className='w-[100%]' defaultValue={length ? length : ''} />
+                                    <input onInput={inputHandler_width} type="number" className='w-[100%]' defaultValue={width ? width : ''} />
+                                    <input onInput={inputHandler_height} type="number" className='w-[100%]' defaultValue={height ? height : ''} />
                                 </div>
                             </div>
 
@@ -133,7 +133,7 @@ const FirstStep_card = () => {
                                     Вес с упаковкой (г)
                                 </div>
                                 <div className='flex-1 flex'>
-                                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWeight(Number(e.target.value)))} defaultValue={weight?weight:''} />
+                                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWeight(Number(e.target.value)))} defaultValue={weight ? weight : ''} />
                                 </div>
                             </div>
                             <div className='flex'>

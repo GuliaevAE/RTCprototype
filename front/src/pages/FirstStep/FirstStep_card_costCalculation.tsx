@@ -1,14 +1,12 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import { OriginalStaf, Weight, Length, Width, Height, Commission, AveragePrice, PurchasePrice, Volume } from '../../store/slices/goodsSlice';
+import React, { useState, useMemo } from 'react';
+import { useAppSelector, } from '../../store/hooks'
+import { Weight, Commission, AveragePrice, PurchasePrice, Volume } from '../../store/slices/goodsSlice';
 // import { changeWeight, changeLength, changeWidth, changeHeight } from '../../store/slices/goodsSlice';
 
 
 
 
 const FirstStep_card_costCalculation = () => {
-    const [switcherForOptionalParameters, setSwitch] = useState<boolean>(false)
-
 
     const Курс_доллар = 75.88
     const Курс_юань = 10.91
@@ -16,18 +14,12 @@ const FirstStep_card_costCalculation = () => {
     const Курс_доллар_16 = Курс_доллар + Курс_доллар * 0.16
     const стоимостьУпаковки = 40 / 1300 * 74.74
 
-    ///табличные параметры 
-    const Длинна = useAppSelector(Length)
-    const Ширина = useAppSelector(Width)
-    const Высота = useAppSelector(Height)
-
-
 
 
     const комиссия = useAppSelector(Commission)
     const средняяЦена = useAppSelector(AveragePrice)
     const ценаОриентир = useAppSelector(PurchasePrice)
-    const вес =  useAppSelector(Weight) /1000
+    const вес = useAppSelector(Weight) / 1000
     const объем = useAppSelector(Volume)
 
     const расчетВеса_добор15 = useMemo(() => вес + вес * 0.15, [вес])
@@ -42,7 +34,7 @@ const FirstStep_card_costCalculation = () => {
     const себестоимость_до = useMemo(() => цена_юани_до * Курс_юань_надбавка, [Курс_юань_надбавка, цена_юани_до])
     //////////////////////////
 
-    
+
     const плотность = useMemo(() => расчетВеса_добор15 / объем, [объем, расчетВеса_добор15])
 
     const страховка_доставка_от = useMemo(() => себестоимость_от * 0.01, [себестоимость_от])
@@ -90,7 +82,7 @@ const FirstStep_card_costCalculation = () => {
                             <td className='text-[0.7rem]'>Расчет объема, м^3</td>
                             <td className='text-[0.7rem]'>Расчет плотности</td>
                             <td className='text-[0.7rem]'>Ставка за кг/м3</td>
-                            <td className='text-[0.7rem]'> В рублях</td>                           
+                            <td className='text-[0.7rem]'> В рублях</td>
                             <td className='text-[0.7rem]'>Ставка за ед товара</td>
                             <td className='text-[0.7rem]'>Страховка на доставку (руб) от</td>
                             <td className='text-[0.7rem]'>Страховка на доставку (руб) до</td>

@@ -1,13 +1,13 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import { OriginalStaf, Weight, Length, Width, Height, Commission, AveragePrice, changePurchasePrice } from '../../store/slices/goodsSlice';
+import { Length, Width, Height, Commission, AveragePrice, changePurchasePrice } from '../../store/slices/goodsSlice';
 
 
 
 const FirstStep_card_table_WBrent = () => {
 
-    
+
     const dispatch = useAppDispatch()
     const [switcherForOptionalParameters, setSwitch] = useState<boolean>(false)
 
@@ -63,9 +63,9 @@ const FirstStep_card_table_WBrent = () => {
 
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         ценаЗакупа && dispatch(changePurchasePrice(ценаЗакупа))
-    },[dispatch, ценаЗакупа])
+    }, [dispatch, ценаЗакупа])
 
 
     return (

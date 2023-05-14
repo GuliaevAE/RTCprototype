@@ -1,13 +1,10 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../store/hooks'
-import { OriginalStaf, changeOriginalStaf } from '../store/slices/goodsSlice';
+import React from 'react';
+import { useAppDispatch } from '../store/hooks'
+import { changeOriginalStaf } from '../store/slices/goodsSlice';
 
 const Header = () => {
     const dispatch = useAppDispatch()
-    const originalStaf = useAppSelector(OriginalStaf)
-
-
 
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -28,15 +25,8 @@ const Header = () => {
             } catch (error) {
                 console.log(error)
             }
-
-         
         }
-
-       
-
     }
-
-
 
     return (
         <header className='w-full bg-[blue] px-[10px] py-[5px] flex'>
