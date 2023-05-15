@@ -7,6 +7,7 @@ import FirstStep_card_table_WBrent from './FirstStep_card_table_WBrent';
 import FirstStep_card_costCalculation from './FirstStep_card_costCalculation';
 
 import { Icon } from '@iconify/react';
+import { cardHoverFunction, cardLeaveFunction } from '../../animations/cardAnimations';
 
 
 interface IDataOption_item {
@@ -46,8 +47,7 @@ const FirstStep_card = () => {
 
     const missingСharacteristics = (options: { name: string, value: string }[]) => {
         const arr: string[] = []
-        !options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)') && arr.push('Вес товара с упаковкой (г)')
-        !options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)') && arr.push('Вес товара без упаковки (г)')
+        !options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)') && !options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)') && arr.push('Вес товара')
         !options.find((x: IDataOption_item) => x.name === 'Длина упаковки') && arr.push('Длина упаковки')
         !options.find((x: IDataOption_item) => x.name === 'Ширина упаковки') && arr.push('Ширина упаковки')
         !options.find((x: IDataOption_item) => x.name === 'Высота упаковки') && arr.push('Высота упаковки')
@@ -98,20 +98,24 @@ const FirstStep_card = () => {
     saved_dol && dispatch(changeCurs_dol(Number(saved_dol)))
     saved_uan && dispatch(changeCurs_uan(Number(saved_uan)))
 
-    const saveCurs= ()=>{
+    const saveCurs = () => {
         localStorage.setItem('dol', String(curs_dol))
         localStorage.setItem('uan', String(curs_uan))
     }
 
+
+    
+
+
     return (
-        <article className='relative flex flex-col gap-[10px] p-2  text-[grey] text-[.8rem] '>
-            <span className='text-[blue] font-[700] text-[1.6rem]'>{data && data.imt_name}</span>
+        <article className='FirstStep_card relative flex flex-col gap-[10px] p-2  text-[grey]  text-[.8rem] '>
+            <span className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
 
             <div className='flex gap-[10px] '>
                 {/* <div className='flex-1 flex flex-col p-2
                   rounded border-solid border-[blue] border-[2px]'>
                     {data.options.map((x: IDataOption_item) =>
-                        <div key={x.name} className='flex hover:text-[blue] hover:font-[500]'>
+                        <div key={x.name} className='flex hover:text-[rgb(239, 239, 239)] hover:font-[500]'>
                             <div className='flex-1'>
                                 {x.name}
                             </div>
@@ -121,18 +125,18 @@ const FirstStep_card = () => {
                         </div>)}
                 </div> */}
                 <div className='flex-1 rounded-[5px]  flex flex-col gap-[10px] w-full'>
-                    <div className=' flex gap-[10px]'>
-                        <div className='flex-1 flex flex-col  p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
-                            <span className='text-[blue] font-[700]'>Основные параметры</span>
+                    <div className=' flex gap-[4vmin]'>
+                        <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className=' background_shadow_animation flex-1 flex flex-col  p-2 rounded shadow-md  transition-all easy-out '>
+                            <span className='text-[rgb(239, 239, 239)] font-[700]'>Основные параметры</span>
 
                             <div className='flex'>
                                 <div className='w-[50%]'>
                                     Габариты (см)
                                 </div>
                                 <div className='flex-1 flex'>
-                                    <input onInput={inputHandler_length} type="number" className='w-[100%]' defaultValue={length ? length : ''} />
-                                    <input onInput={inputHandler_width} type="number" className='w-[100%]' defaultValue={width ? width : ''} />
-                                    <input onInput={inputHandler_height} type="number" className='w-[100%]' defaultValue={height ? height : ''} />
+                                    <input onInput={inputHandler_length} type="number" className='w-[100%] ' defaultValue={length ? length : ''} />
+                                    <input onInput={inputHandler_width} type="number" className='w-[100%]  ' defaultValue={width ? width : ''} />
+                                    <input onInput={inputHandler_height} type="number" className='w-[100%] ' defaultValue={height ? height : ''} />
                                 </div>
                             </div>
 
@@ -148,7 +152,7 @@ const FirstStep_card = () => {
                                     Вес с упаковкой (г)
                                 </div>
                                 <div className='flex-1 flex'>
-                                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWeight(Number(e.target.value)))} defaultValue={weight ? weight : ''} />
+                                    <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWeight(Number(e.target.value)))} defaultValue={weight ? weight : ''} />
                                 </div>
                             </div>
                             <div className='flex'>
@@ -156,7 +160,7 @@ const FirstStep_card = () => {
                                     Средняя цена
                                 </div>
                                 <div className='flex-1 flex'>
-                                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeAveragePrice(Number(e.target.value)))} />
+                                    <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeAveragePrice(Number(e.target.value)))} />
                                 </div>
                             </div>
                             <div className='flex'>
@@ -164,24 +168,24 @@ const FirstStep_card = () => {
                                     Комиссия (%)
                                 </div>
                                 <div className='flex-1 flex'>
-                                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value) / 100))} />
+                                    <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value) / 100))} />
                                 </div>
                             </div>
 
                         </div>
-                        <div className='flex-1 flex flex-col gap-[10px]'>
+                        <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='rounded  background_shadow_animation flex-1 flex flex-col gap-[10px] '>
 
-                            <div className='relative flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
-                                <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[blue]'>
-                                    <Icon height="24" icon="ic:save" className='hover:rotate-[45deg] transition-all' />
+                            <div className='relative  flex-1 flex flex-col p-2  transition-all easy-out'>
+                                <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[rgb(239, 239, 239)]'>
+                                    <Icon height="18" icon="ic:save" className='' />
                                 </div>
-                                <span className='text-[blue] font-[700]'>Курс</span>
+                                <span className='text-[rgb(239, 239, 239)] font-[700]'>Курс</span>
                                 <div className='flex'>
                                     <div className='w-[50%]'>
                                         Доллар
                                     </div>
                                     <div className='flex-1 flex'>
-                                        <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_dol(Number(e.target.value)))} defaultValue={curs_dol ? curs_dol : ''} />
+                                        <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_dol(Number(e.target.value)))} defaultValue={curs_dol ? curs_dol : ''} />
                                     </div>
                                 </div>
                                 <div className='flex'>
@@ -189,12 +193,12 @@ const FirstStep_card = () => {
                                         Юаня
                                     </div>
                                     <div className='flex-1 flex'>
-                                        <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_uan(Number(e.target.value)))} defaultValue={curs_uan ? curs_uan : ''} />
+                                        <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_uan(Number(e.target.value)))} defaultValue={curs_uan ? curs_uan : ''} />
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
-                                <span className='text-[blue] font-[700]'>Отсутствующие параметры:</span>
+                            <div className='flex-1 flex flex-col p-2 rounded shadow-md    transition-all easy-out'>
+                                <span className='text-[rgb(239, 239, 239)] font-[700]'>Отсутствующие параметры:</span>
                                 {missingСharacteristics(data.options).map((mis: string) => <span key={mis} className='text-[red]'>{mis}</span>)}
 
                             </div>
@@ -211,7 +215,7 @@ const FirstStep_card = () => {
 
             </div>
 
-            {/* <div className='absolute w-full top-[100%] left-[0] bg-[blue] p-[5px] text-[1.2rem] text-[white] rounded'>
+            {/* <div className='absolute w-full top-[100%] left-[0] bg-[blue] p-[5px] text-[1.2rem] text-[rgb(239, 239, 239)] rounded'>
                 {data.nm_id}
             </div> */}
 

@@ -15,10 +15,11 @@ function App() {
   return (
     <>
       <Router>
-        <Header></Header>
+        <Header/>
         <main className=''>
           <Routes >
             <Route path="/" element={<FirstStep />} />
+            <Route path="/asd" element={<div></div>} />
           </Routes>
         </main>
       </Router> 

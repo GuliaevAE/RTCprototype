@@ -29,10 +29,10 @@ const Header = () => {
     }
 
     return (
-        <header className='w-full bg-[blue] px-[10px] py-[5px] flex'>
+        <header className='w-full pt-[3vmin] px-[5vmin] flex relative z-[1]'>
             <form onSubmit={event => submitHandler(event)} className='flex'>
-                <input id='originalStaf_input' placeholder='Идентификатор WB' className='text-[black] px-2 rounded-l' type="text" />
-                <button className='bg-[grey] rounded-r p-1 px-2 '>Найти</button>
+                <input id='originalStaf_input' className='border-[.1px] border-solid border-[white] text-[white] bg-[black] px-2 rounded-l' placeholder='Идентификатор WB'  type="text" />
+                <button className='border-[.1px] border-solid border-[white] rounded-r p-1 px-2 '>Найти</button>
             </form>
 
         </header>

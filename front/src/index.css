@@ -4,7 +4,7 @@
 
 
 
-.hide{
+.hide {
   display: none;
 }
 
@@ -14,44 +14,156 @@
   font-weight: 400;
 
   color: rgba(255, 255, 255, 0.87);
-  background-color: #ebebeb;
+  background-color: #161616;
 
- 
+
 }
 
-
+@font-face {
+  font-family: 'asd';
+  src: url(/front/src/assets/fonts/DolomanPavljenko.otf);
+}
 
 body {
   margin: 0;
   padding: 0;
-  
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 5px;
+}
+
+.scrollTable::-webkit-scrollbar {
+  opacity: 0;
 }
 
 
-.scrollTable::-webkit-scrollbar{
-opacity: 0;
-}
-
-
-input[type='number']{
-  background: rgb(243, 243, 243);
+input[type='number'] {
+  background: transparent;
   padding: 3px 6px;
-  box-shadow: inset 0 0 3px 0px black, inset 0 0 0px 1px blue;
-  border-radius:5px;
-  transition:all .3s 
+  /* box-shadow: inset 0 0 3px 0px rgb(216, 216, 216), inset 0 0 0px 1px blue; */
+  border-radius: 4px;
+  transition: all .3s;
+  /* color: white; */
 }
-input[type='number']:focus{
+
+input[type='number']:focus {
   background: rgb(79, 79, 239);
   color: white;
 }
-input:disabled{
-  box-shadow: inset 0 0 3px 0px black;
+
+input:disabled {
+  box-shadow: inset 0 0 3px 0px rgba(0, 0, 0, 0.822);
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
+.FirstStep_card {
+  animation: FirstStep_card_open .8s ease;
+  z-index: 0;
+}
+
+@keyframes FirstStep_card_open {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+
+  }
+}
+
+.background_shadow_animation {
+  border: .1px solid #6b6b6b7e;
+  box-shadow: 1px -1px rgb(81, 81, 81), 3px -3px rgba(81, 81, 81, 0.568), 5px -5px rgba(81, 81, 81, 0.4);
+  transition: all .6s ease-out
+}
+
+
+.card_title {
+  text-transform: uppercase;
+  background-image: linear-gradient(-225deg,
+      #ffffff 0%,
+      #161616 50%,
+
+      #ffffff 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+@keyframes card_title_animation {
+  0% {
+    text-shadow: -3px 0 rgba(255, 255, 255, 0), -3.5px 0 rgb(0, 0, 0);
+
+  }
+
+  25% {
+    text-shadow: -3px 0 white, -2px 0 white;
+
+  }
+
+  50% {
+    text-shadow: 1px 0 white, -1px 0 white
+  }
+
+  75% {
+    text-shadow: 3px 0 white, 2px 0 white
+  }
+
+  100% {
+    text-shadow: -.3px .3px 0 white,
+      .3px .3px 0 white,
+      .3px -.3px 0 white,
+      -.3px -.3px 0 white;
+    /* color: white */
+  }
+}
+
+.background_shadow_animation input {
+  border: .1px solid #6b6b6b7e;
+  transition: all .6s ease-out
+}
+
+.background_shadow_animation:hover {
+  color: white;
+  transform: translate(-5px, 5px);
+  box-shadow: 2px -2px rgb(111, 111, 111), 6px -6px rgba(111, 111, 111, 0.568), 10px -10px rgba(111, 111, 111, 0.4)
+}
+
+.background_shadow_animation:hover input {
+  border: .3px solid grey;
+  box-shadow: inset 0 0 0px .3px rgba(107, 107, 107, 0.496), 0 0 0px .3px #6b6b6b7e;
 }

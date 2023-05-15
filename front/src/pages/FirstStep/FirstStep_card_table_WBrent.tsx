@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { Length, Width, Height, Commission, AveragePrice, changePurchasePrice } from '../../store/slices/goodsSlice';
+import { cardHoverFunction, cardLeaveFunction } from '../../animations/cardAnimations';
 
 
 
@@ -70,9 +71,9 @@ const FirstStep_card_table_WBrent = () => {
 
     return (
         <>
-            <div className='scrollTable relative flex flex-col p-2   rounded shadow-lg bg-[white] hover:scale-[1.01] transition-all easy-out  overflow-x-hidden'>
-                <div onClick={() => setSwitch(!switcherForOptionalParameters)} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[blue]'>
-                    <Icon height="24" icon="ic:baseline-plus" className='hover:rotate-[45deg] transition-all' />
+            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='background_shadow_animation scrollTable relative flex flex-col p-2   rounded shadow-lg  transition-all easy-out  overflow-x-hidden'>
+                <div onClick={() => setSwitch(!switcherForOptionalParameters)} className='absolute top-[0px] right-[0px] flex justify-center align-center '>
+                    <Icon height="24" icon="ic:baseline-plus" className='' />
                 </div>
 
                 <h2>Калькулятор рента WB</h2>
@@ -146,7 +147,7 @@ const FirstStep_card_table_WBrent = () => {
 
 
             </div>
-            <div className={`${switcherForOptionalParameters ? '' : 'hide'} scrollTable  flex flex-col p-2 rounded shadow-lg bg-[white] hover:scale-[1.01] transition-all easy-out  `}>
+            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className={`${switcherForOptionalParameters ? '' : 'hide'} background_shadow_animation scrollTable  flex flex-col p-2 rounded`}>
 
                 <h2>Скрытые вычисления</h2>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-scroll'>

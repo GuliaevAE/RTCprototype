@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useAppSelector, } from '../../store/hooks'
 import { Weight, Commission, AveragePrice, PurchasePrice, Volume, Curs_dol, Curs_uan } from '../../store/slices/goodsSlice';
+import { cardHoverFunction, cardLeaveFunction } from '../../animations/cardAnimations';
 // import { changeWeight, changeLength, changeWidth, changeHeight } from '../../store/slices/goodsSlice';
 
 
@@ -66,7 +67,7 @@ const FirstStep_card_costCalculation = () => {
 
     return (
         <>
-            <div className='scrollTable relative flex flex-col p-2   rounded shadow-lg  bg-[white] hover:scale-[1.01] transition-all easy-out  overflow-x-hidden'>
+            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='background_shadow_animation scrollTable relative flex flex-col p-2   rounded  overflow-x-hidden'>
                 <h2>Расчет себестоимости </h2>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-scroll'>
                     <table  >
