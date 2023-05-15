@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { OriginalStaf, Weight, Length, Width, Height, Volume, changeVolume, changePurchasePrice, Curs_dol, Curs_uan, changeCurs_dol, changeCurs_uan } from '../../store/slices/goodsSlice';
 import { changeWeight, changeLength, changeWidth, changeHeight, changeCommission, changeAveragePrice } from '../../store/slices/goodsSlice';
