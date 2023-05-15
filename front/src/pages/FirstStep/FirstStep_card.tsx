@@ -104,7 +104,7 @@ const FirstStep_card = () => {
     }
 
 
-    
+
 
 
     return (
@@ -162,7 +162,6 @@ const FirstStep_card = () => {
 
                         </div>
                         <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='rounded  background_shadow_animation flex-1 flex flex-col gap-[10px] '>
-
                             <div className='relative  flex-1 flex flex-col p-2  transition-all easy-out'>
                                 <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[rgb(239, 239, 239)]'>
                                     <Icon height="18" icon="ic:save" className='' />
@@ -188,7 +187,6 @@ const FirstStep_card = () => {
                             <div className='flex-1 flex flex-col p-2 rounded shadow-md    transition-all easy-out'>
                                 <span className='text-[rgb(239, 239, 239)] font-[700]'>Отсутствующие параметры:</span>
                                 {missingСharacteristics(data.options).map((mis: string) => <span key={mis} className='text-[red]'>{mis}</span>)}
-
                             </div>
 
                         </div>

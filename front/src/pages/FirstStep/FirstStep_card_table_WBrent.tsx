@@ -71,7 +71,7 @@ const FirstStep_card_table_WBrent = () => {
 
     return (
         <>
-            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='background_shadow_animation scrollTable relative flex flex-col p-2   rounded shadow-lg  transition-all easy-out  overflow-x-hidden'>
+            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='background_shadow_animation scrollTable relative flex flex-col p-2   rounded   overflow-x-hidden'>
                 <div onClick={() => setSwitch(!switcherForOptionalParameters)} className='absolute top-[0px] right-[0px] flex justify-center align-center '>
                     <Icon height="24" icon="ic:baseline-plus" className='' />
                 </div>
