@@ -112,18 +112,6 @@ const FirstStep_card = () => {
             <span className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
 
             <div className='flex gap-[10px] '>
-                {/* <div className='flex-1 flex flex-col p-2
-                  rounded border-solid border-[blue] border-[2px]'>
-                    {data.options.map((x: IDataOption_item) =>
-                        <div key={x.name} className='flex hover:text-[rgb(239, 239, 239)] hover:font-[500]'>
-                            <div className='flex-1'>
-                                {x.name}
-                            </div>
-                            <div className='flex-1'>
-                                {x.value}
-                            </div>
-                        </div>)}
-                </div> */}
                 <div className='flex-1 rounded-[5px]  flex flex-col gap-[10px] w-full'>
                     <div className=' flex gap-[4vmin]'>
                         <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className=' background_shadow_animation flex-1 flex flex-col  p-2 rounded shadow-md  transition-all easy-out '>

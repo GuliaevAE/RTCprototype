@@ -76,7 +76,7 @@ const FirstStep_card_table_WBrent = () => {
                     <Icon height="24" icon="ic:baseline-plus" className='' />
                 </div>
 
-                <h2>Калькулятор рента WB</h2>
+                <h2 className=''>Калькулятор рента WB</h2>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-scroll'>
                     <table  >
                         <tr>
