@@ -96,7 +96,7 @@ const FirstStep_card_table_WBrent = () => {
                         </tr>
                         <tr>
                             <td>
-                                <input disabled defaultValue={средняяЦена} type="number" />
+                                <input disabled value={средняяЦена} type="number" />
                             </td>
                             <td>
                                 <input disabled value={ценаЗакупа} type="number" />
