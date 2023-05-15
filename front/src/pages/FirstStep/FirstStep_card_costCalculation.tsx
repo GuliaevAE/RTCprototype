@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useAppSelector, } from '../../store/hooks'
-import { Weight, Commission, AveragePrice, PurchasePrice, Volume } from '../../store/slices/goodsSlice';
+import { Weight, Commission, AveragePrice, PurchasePrice, Volume, Curs_dol, Curs_uan } from '../../store/slices/goodsSlice';
 // import { changeWeight, changeLength, changeWidth, changeHeight } from '../../store/slices/goodsSlice';
 
 
@@ -8,10 +8,11 @@ import { Weight, Commission, AveragePrice, PurchasePrice, Volume } from '../../s
 
 const FirstStep_card_costCalculation = () => {
 
-    const Курс_доллар = 75.88
-    const Курс_юань = 10.91
-    const Курс_юань_надбавка = Курс_юань + 0.25
-    const Курс_доллар_16 = Курс_доллар + Курс_доллар * 0.16
+    const Курс_доллар = useAppSelector(Curs_dol)
+    const Курс_юань = useAppSelector(Curs_uan)
+    const Курс_юань_надбавка = useMemo(()=>Курс_юань+0.25,[Курс_юань]) 
+    const Курс_доллар_16 = useMemo(()=>Курс_доллар+Курс_доллар*0.16,[Курс_доллар])
+
     const стоимостьУпаковки = 40 / 1300 * 74.74
 
 

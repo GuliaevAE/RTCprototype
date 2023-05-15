@@ -15,6 +15,10 @@ interface CounterState {
   commission: number,
   weight: number,
   volume: number,
+
+  curs_dol: number,
+  curs_uan: number
+
 }
 
 const initialState: CounterState = {
@@ -25,10 +29,13 @@ const initialState: CounterState = {
   height: 0,
 
   averagePrice: 0,
-  purchasePrice:0,
+  purchasePrice: 0,
   commission: 0,
   weight: 0,
-  volume: 0
+  volume: 0,
+
+    curs_dol: 75.88,
+    curs_uan: 10.91
 }
 
 export const goodsSlice = createSlice({
@@ -36,7 +43,7 @@ export const goodsSlice = createSlice({
   initialState,
   reducers: {
     /////Первоначальный объект
-    changeOriginalStaf: (state, action: PayloadAction<object|null>) => {
+    changeOriginalStaf: (state, action: PayloadAction<object | null>) => {
       state.originalStaf = action.payload
     },
 
@@ -54,7 +61,7 @@ export const goodsSlice = createSlice({
     },
 
 
-    
+
 
 
     changeAveragePrice: (state, action: PayloadAction<number>) => {
@@ -73,10 +80,17 @@ export const goodsSlice = createSlice({
     changeVolume: (state, action: PayloadAction<number>) => {
       state.volume = action.payload
     },
+
+    changeCurs_dol: (state, action: PayloadAction<number>) => {
+      state.curs_dol = action.payload
+    },
+    changeCurs_uan: (state, action: PayloadAction<number>) => {
+      state.curs_uan = action.payload
+    },
   },
 })
 
-export const { changeOriginalStaf, changeAveragePrice,changePurchasePrice, changeCommission, changeWeight, changeVolume, changeLength, changeWidth, changeHeight } = goodsSlice.actions
+export const { changeOriginalStaf, changeAveragePrice, changePurchasePrice, changeCommission, changeWeight, changeVolume, changeLength, changeWidth, changeHeight,changeCurs_dol, changeCurs_uan } = goodsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const OriginalStaf = (state: RootState) => state.goods.originalStaf
@@ -91,6 +105,11 @@ export const PurchasePrice = (state: RootState) => state.goods.purchasePrice
 export const Commission = (state: RootState) => state.goods.commission
 export const Weight = (state: RootState) => state.goods.weight
 export const Volume = (state: RootState) => state.goods.volume
+
+export const Curs_dol = (state: RootState) => state.goods.curs_dol
+export const Curs_uan = (state: RootState) => state.goods.curs_uan
+
+
 
 
 

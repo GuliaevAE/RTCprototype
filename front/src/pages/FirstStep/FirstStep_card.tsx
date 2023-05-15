@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import { OriginalStaf, Weight, Length, Width, Height, Volume, changeVolume, changePurchasePrice } from '../../store/slices/goodsSlice';
+import { OriginalStaf, Weight, Length, Width, Height, Volume, changeVolume, changePurchasePrice, Curs_dol, Curs_uan, changeCurs_dol, changeCurs_uan } from '../../store/slices/goodsSlice';
 import { changeWeight, changeLength, changeWidth, changeHeight, changeCommission, changeAveragePrice } from '../../store/slices/goodsSlice';
 
 import FirstStep_card_table_WBrent from './FirstStep_card_table_WBrent';
@@ -87,6 +87,23 @@ const FirstStep_card = () => {
 
 
 
+    const curs_dol = useAppSelector(Curs_dol)
+    const curs_uan = useAppSelector(Curs_uan)
+
+    const saved_dol = localStorage.getItem('dol')
+    const saved_uan = localStorage.getItem('uan')
+
+    saved_dol && dispatch(changeCurs_dol(Number(saved_dol)))
+    saved_uan && dispatch(changeCurs_uan(Number(saved_uan)))
+
+
+
+
+
+    const curs_dol_надбавка = useMemo(() => curs_dol + curs_dol * 0.16, [curs_dol])
+    const curs_uan_надбавка = useMemo(() => curs_uan + 0.25, [curs_uan])
+
+
 
     return (
         <article className='relative flex flex-col gap-[10px] p-2  text-[grey] text-[.8rem] '>
@@ -154,11 +171,35 @@ const FirstStep_card = () => {
                             </div>
 
                         </div>
-                        <div className='flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
-                            <span className='text-[blue] font-[700]'>Отсутствующие параметры:</span>
-                            {missingСharacteristics(data.options).map((mis: string) => <span key={mis} className='text-[red]'>{mis}</span>)}
+                        <div className='flex-1 flex flex-col'>
+                            <div className='flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
+                                <span className='text-[blue] font-[700]'>Курс</span>
+                                <div className='flex'>
+                                    <div className='w-[50%]'>
+                                        Доллар
+                                    </div>
+                                    <div className='flex-1 flex'>
+                                        <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_dol(Number(e.target.value)))} defaultValue={curs_dol ? curs_dol : ''} />
+                                    </div>
+                                </div>
+                                <div className='flex'>
+                                    <div className='w-[50%]'>
+                                        Юаня
+                                    </div>
+                                    <div className='flex-1 flex'>
+                                        <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_uan(Number(e.target.value)))} defaultValue={curs_uan ? curs_uan : ''} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
+                                <span className='text-[blue] font-[700]'>Отсутствующие параметры:</span>
+                                {missingСharacteristics(data.options).map((mis: string) => <span key={mis} className='text-[red]'>{mis}</span>)}
+
+                            </div>
 
                         </div>
+
+
                     </div>
 
 
