@@ -6,6 +6,8 @@ import { changeWeight, changeLength, changeWidth, changeHeight, changeCommission
 import FirstStep_card_table_WBrent from './FirstStep_card_table_WBrent';
 import FirstStep_card_costCalculation from './FirstStep_card_costCalculation';
 
+import { Icon } from '@iconify/react';
+
 
 interface IDataOption_item {
     name: string,
@@ -96,14 +98,10 @@ const FirstStep_card = () => {
     saved_dol && dispatch(changeCurs_dol(Number(saved_dol)))
     saved_uan && dispatch(changeCurs_uan(Number(saved_uan)))
 
-
-
-
-
-    const curs_dol_надбавка = useMemo(() => curs_dol + curs_dol * 0.16, [curs_dol])
-    const curs_uan_надбавка = useMemo(() => curs_uan + 0.25, [curs_uan])
-
-
+    const saveCurs= ()=>{
+        localStorage.setItem('dol', String(curs_dol))
+        localStorage.setItem('uan', String(curs_uan))
+    }
 
     return (
         <article className='relative flex flex-col gap-[10px] p-2  text-[grey] text-[.8rem] '>
@@ -124,7 +122,7 @@ const FirstStep_card = () => {
                 </div> */}
                 <div className='flex-1 rounded-[5px]  flex flex-col gap-[10px] w-full'>
                     <div className=' flex gap-[10px]'>
-                        <div className='flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
+                        <div className='flex-1 flex flex-col  p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
                             <span className='text-[blue] font-[700]'>Основные параметры</span>
 
                             <div className='flex'>
@@ -171,8 +169,12 @@ const FirstStep_card = () => {
                             </div>
 
                         </div>
-                        <div className='flex-1 flex flex-col'>
-                            <div className='flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
+                        <div className='flex-1 flex flex-col gap-[10px]'>
+
+                            <div className='relative flex-1 flex flex-col p-2 rounded shadow-md bg-[white] hover:scale-[1.01] transition-all easy-out'>
+                                <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[blue]'>
+                                    <Icon height="24" icon="ic:save" className='hover:rotate-[45deg] transition-all' />
+                                </div>
                                 <span className='text-[blue] font-[700]'>Курс</span>
                                 <div className='flex'>
                                     <div className='w-[50%]'>
