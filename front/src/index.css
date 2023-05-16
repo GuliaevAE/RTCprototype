@@ -11,7 +11,7 @@
 
 
 :root {
-  --backColor:#161616;
+  --backColor:#3f3f3f;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -19,7 +19,7 @@
 
   color: rgba(255, 255, 255, 0.87);
   /* background-color: #161616; */
-  background-color: #3f3f3f;
+  background-color: var(--backColor);
 
 
 }
