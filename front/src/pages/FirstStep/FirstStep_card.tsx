@@ -134,16 +134,11 @@ const FirstStep_card = () => {
         <article className='FirstStep_card relative flex flex-col gap-[10px] p-2  text-[grey]  text-[.8rem] '>
             <span data-value={data.imt_name} onClick={cardTitle_animation} ref={cardTitle} className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
 
-            <div className='flex gap-[10px] '>
-                <div className='flex-1 rounded-[5px]  flex flex-col gap-[3vmin] w-full'>
-                    <div className=' flex gap-[4vmin]'>
+            <div className='flex'>
+                <div className='flex-1 rounded-[5px]  flex flex-col gap-[4vmin] w-full'>
+                    <div className=' flex gap-[4vmin] flex-wrap'>
                         <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className=' background_shadow_animation flex-1 flex flex-col  p-2   '>
                             <span className='text-[rgb(239, 239, 239)] font-[700]'>Основные параметры</span>
-
-
-
-                            {/* <div className='card_shadow'/> */}
-
 
 
                             <div className='flex inputBox'>

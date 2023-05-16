@@ -21,8 +21,8 @@
 export const cardHoverFunction = (event: React.MouseEvent<HTMLElement>) => {
     const { currentTarget } = event
     const target = currentTarget.getBoundingClientRect()
-    const gorizontalPercentage = (event.pageX - target.x) / target.width * 100
-    const verticalPercentage = (event.pageY - target.y) / target.height * 100
+    const gorizontalPercentage = (event.clientX - target.x) / target.width * 100
+    const verticalPercentage = (event.clientY - target.y) / target.height * 100
 
     const amplituda = 10
 
