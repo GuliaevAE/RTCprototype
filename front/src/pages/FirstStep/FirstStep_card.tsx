@@ -115,7 +115,7 @@ const FirstStep_card = () => {
         let iterations = 0;
         const interval = setInterval(() => {
             target.innerText = target.innerText.split('')
-                .map((letter, index) => {
+                .map((_letter:string, index:number) => {
                     if (index < iterations) return target.dataset.value[index]
                     return letters[Math.floor(Math.random() * 48)]
                 }).join('')
