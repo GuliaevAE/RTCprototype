@@ -117,11 +117,11 @@ const FirstStep_card = () => {
                         <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className=' background_shadow_animation flex-1 flex flex-col  p-2 rounded shadow-md  transition-all easy-out '>
                             <span className='text-[rgb(239, 239, 239)] font-[700]'>Основные параметры</span>
 
-                            <div className='flex'>
+                            <div className='flex inputBox'>
                                 <div className='w-[50%]'>
                                     Габариты (см)
                                 </div>
-                                <div className='flex-1 flex'>
+                                <div className='flex-1 flex '>
                                     <input onInput={inputHandler_length} type="number" className='w-[100%] ' defaultValue={length ? length : ''} />
                                     <input onInput={inputHandler_width} type="number" className='w-[100%]  ' defaultValue={width ? width : ''} />
                                     <input onInput={inputHandler_height} type="number" className='w-[100%] ' defaultValue={height ? height : ''} />
@@ -129,33 +129,33 @@ const FirstStep_card = () => {
                             </div>
 
 
-                            {dimensions(data.options).length === 3 && <div className='flex' >
+                            {dimensions(data.options).length === 3 && <div className='flex inputBox' >
                                 <div className='w-[50%]'>Объем (м³)</div>
                                 <input type="number" className='flex-auto' value={volume} />
                             </div>}
 
 
-                            <div className='flex'>
+                            <div className='flex inputBox'>
                                 <div className='w-[50%]'>
                                     Вес с упаковкой (г)
                                 </div>
-                                <div className='flex-1 flex'>
+                                <div className='flex-1 flex '>
                                     <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWeight(Number(e.target.value)))} defaultValue={weight ? weight : ''} />
                                 </div>
                             </div>
-                            <div className='flex'>
+                            <div className='flex inputBox'>
                                 <div className='w-[50%]'>
                                     Средняя цена
                                 </div>
-                                <div className='flex-1 flex'>
+                                <div className='flex-1 flex '>
                                     <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeAveragePrice(Number(e.target.value)))} />
                                 </div>
                             </div>
-                            <div className='flex'>
+                            <div className='flex inputBox'>
                                 <div className='w-[50%]'>
                                     Комиссия (%)
                                 </div>
-                                <div className='flex-1 flex'>
+                                <div className='flex-1 flex '>
                                     <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value) / 100))} />
                                 </div>
                             </div>
@@ -167,7 +167,7 @@ const FirstStep_card = () => {
                                     <Icon height="18" icon="ic:save" className='' />
                                 </div>
                                 <span className='text-[rgb(239, 239, 239)] font-[700]'>Курс</span>
-                                <div className='flex'>
+                                <div className='flex inputBox'>
                                     <div className='w-[50%]'>
                                         Доллар
                                     </div>
@@ -175,7 +175,7 @@ const FirstStep_card = () => {
                                         <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_dol(Number(e.target.value)))} defaultValue={curs_dol ? curs_dol : ''} />
                                     </div>
                                 </div>
-                                <div className='flex'>
+                                <div className='flex inputBox'>
                                     <div className='w-[50%]'>
                                         Юаня
                                     </div>

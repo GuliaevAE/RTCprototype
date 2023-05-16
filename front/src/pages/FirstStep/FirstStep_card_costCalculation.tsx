@@ -67,7 +67,7 @@ const FirstStep_card_costCalculation = () => {
 
     return (
         <>
-            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='background_shadow_animation scrollTable relative flex flex-col p-2   rounded  overflow-x-hidden'>
+            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='background_shadow_animation scrollTable relative flex flex-col p-2   rounded  overflow-x-hidden '>
                 <h2>Расчет себестоимости </h2>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-scroll'>
                     <table  >
