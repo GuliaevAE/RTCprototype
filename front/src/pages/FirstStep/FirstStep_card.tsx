@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { OriginalStaf, Weight, Length, Width, Height, Volume, changeVolume, changePurchasePrice, Curs_dol, Curs_uan, changeCurs_dol, changeCurs_uan } from '../../store/slices/goodsSlice';
 import { changeWeight, changeLength, changeWidth, changeHeight, changeCommission, changeAveragePrice } from '../../store/slices/goodsSlice';
@@ -104,12 +104,36 @@ const FirstStep_card = () => {
     }
 
 
+    const cardTitle = useRef<any>(null)
 
 
+
+
+    const cardTitle_animation = () => {
+        const target = cardTitle.current
+        const letters = "ABCDEFGHILMNOPQRSTUVWXYZabcdefghilmnopqrstuvwxyz"
+        let iterations = 0;
+        const interval = setInterval(() => {
+            target.innerText = target.innerText.split('')
+                .map((letter, index) => {
+                    if (index < iterations) return target.dataset.value[index]
+                    return letters[Math.floor(Math.random() * 48)]
+                }).join('')
+
+            if (iterations >= target.dataset.value.length) clearInterval(interval)
+
+            iterations += 1 
+        }, 50)
+    }
+
+    useEffect(()=>{
+        cardTitle_animation()
+
+    },[])
 
     return (
         <article className='FirstStep_card relative flex flex-col gap-[10px] p-2  text-[grey]  text-[.8rem] '>
-            <span className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
+            <span data-value={data.imt_name} onClick={cardTitle_animation} ref={cardTitle} className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
 
             <div className='flex gap-[10px] '>
                 <div className='flex-1 rounded-[5px]  flex flex-col gap-[10px] w-full'>
