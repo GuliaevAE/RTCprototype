@@ -211,7 +211,7 @@ const FirstStep_card = () => {
                             </div>
                             <div className='flex-1 flex flex-col p-2 rounded shadow-md    transition-all easy-out'>
                                 <span className='text-[rgb(239, 239, 239)] font-[700]'>Отсутствующие параметры:</span>
-                                {missingСharacteristics(data.options).map((mis: string) => <span key={mis} className='text-[red]'>{mis}</span>)}
+                                {missingСharacteristics(data.options).map((mis: string) => <span key={mis} className='animation_missingCharasteristic font-[500]'>{mis}</span>)}
                             </div>
 
                         </div>
