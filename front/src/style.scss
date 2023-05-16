@@ -82,54 +82,110 @@ input::-webkit-inner-spin-button {
 }
 
 .background_shadow_animation {
+    position: relative;
     border: .3px solid #6b6b6b7e;
-    box-shadow: 1px -1px rgb(81, 81, 81), 3px -3px rgba(81, 81, 81, 0.568), 5px -5px rgba(81, 81, 81, 0.4);
-    transition: all .6s ease-out;
-    opacity: 0;
-    animation-name: background_shadow_animation_animations;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+    border-radius: 10px;
+    z-index: 2;
+    // background: black;
+    // box-shadow: 1px -1px rgb(81, 81, 81), 3px -3px rgba(81, 81, 81, 0.568), 5px -5px rgba(81, 81, 81, 0.4);
+
+
+    //////////////////////////////////////////////old
+    // z-index: 11;
+    // transition: all .6s ease-out;
+    // opacity: 0;
+    // animation-name: background_shadow_animation_animations;
+    // &:hover {
+    //     border: .3px solid grey;
+
+    //     color: white;
+    //     transform: translate(-5px, 5px);
+    //     box-shadow: 2px -2px rgb(111, 111, 111), 6px -6px rgba(111, 111, 111, 0.568), 10px -10px rgba(111, 111, 111, 0.4);
+
+    //     input {
+    //         // background: #161616;
+
+    //     }
+
+    //     input:not(:disabled) {
+    //         background: #2a2a2a8c;
+    //         border: .3px solid grey;
+    //         box-shadow: inset 0 0 0px .3px rgba(107, 107, 107, 0.496), 0 0 0px .3px #6b6b6b7e, 2.5px -2.5px rgba(126, 126, 126, 0.859), 5px -5px rgba(126, 126, 126, 0.415);
+    //         transform: translate(-5px, 5px);
+    //         // box-shadow: 2.5px -2.5px rgba(126, 126, 126, 0.859), 5px -5px rgba(126, 126, 126, 0.415);
+    //     }
+
+    //     // input:nth-child(3) {
+    //     //     z-index: 3;
+    //     //     background:red
+
+    //     // }
+    //     // input:nth-child(2) {
+    //     //     z-index: 3;
+    //     //     background:green
+    //     // }
+    // }
 
 
 
-    &:hover {
-        border: .3px solid grey;
 
-        color: white;
-        transform: translate(-5px, 5px);
-        box-shadow: 2px -2px rgb(111, 111, 111), 6px -6px rgba(111, 111, 111, 0.568), 10px -10px rgba(111, 111, 111, 0.4);
+    ///////////////////////
+    ////////////////////new
+    transform-style: preserve-3d;
 
-        input {
-            // background: #161616;
+    &::before,
+    &::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s ease;
+        border-radius: 10px;
+        // border: .3px solid #fcfcfc3f;
 
-        }
-
-        input:not(:disabled) {
-            background: #2a2a2a8c;
-            border: .3px solid grey;
-            box-shadow: inset 0 0 0px .3px rgba(107, 107, 107, 0.496), 0 0 0px .3px #6b6b6b7e, 2.5px -2.5px rgba(126, 126, 126, 0.859), 5px -5px rgba(126, 126, 126, 0.415);
-            transform: translate(-5px, 5px);
-            // box-shadow: 2.5px -2.5px rgba(126, 126, 126, 0.859), 5px -5px rgba(126, 126, 126, 0.415);
-        }
-
-
+    }
 
 
 
-        // input:nth-child(3) {
-        //     z-index: 3;
-        //     background:red
+    &::before {
+        transform: translateZ(-8rem);
+        background: #cbcbcb;
 
-        // }
-        // input:nth-child(2) {
-        //     z-index: 3;
-        //     background:green
+        // &:hover {
+        //     transform: translateZ(0);
         // }
     }
 
+    &::after {
+        transform: translateZ(-4rem);
+        background: #000000;
+        // background-image: linear-gradient(to right, aquamarine, mediupyrple);
+        box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
+
+        // &:hover {
+        //     transform: translateZ(-1px);
+        // }
+    }
+
+    &:hover {
+        input:not(:disabled) {
+            transform: translateZ(12rem);
+            border: .5px solid #ffffff7e;
+
+        }
+    }
+
+    ////////////////////////////////////
+
     input {
         border: .1px solid #6b6b6b7e;
-        transition: all .6s ease-out
+        transition: all .6s ease-out;
+        transform-style: preserve-3d;
+
+        display: block;
     }
 
     @for $i from 1 through 7 {
@@ -140,13 +196,22 @@ input::-webkit-inner-spin-button {
         }
     }
 
+    .card_shadow {
+        height: 100%;
+        width: 100%;
+        background: green;
+        // transform: translate(5px, 4px);
+        position: absolute;
+        top: 10px;
+        left: 50px;
+        z-index: -2;
+    }
 
 
-    // @for $i from 1 through 4 {
-    //     &:nth-child(#{$i}) {
-    //         transition: all .2s #{$i * .1}s ease-in;
-    //     }
-    // }
+
+
+
+
 }
 
 .FirstStep_card {

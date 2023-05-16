@@ -115,31 +115,36 @@ const FirstStep_card = () => {
         let iterations = 0;
         const interval = setInterval(() => {
             target.innerText = target.innerText.split('')
-                .map((_letter:string, index:number) => {
+                .map((_letter: string, index: number) => {
                     if (index < iterations) return target.dataset.value[index]
                     return letters[Math.floor(Math.random() * 48)]
                 }).join('')
 
             if (iterations >= target.dataset.value.length) clearInterval(interval)
 
-            iterations += 1 
+            iterations += 1
         }, 50)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         cardTitle_animation()
-
-    },[])
+    }, [])
 
     return (
         <article className='FirstStep_card relative flex flex-col gap-[10px] p-2  text-[grey]  text-[.8rem] '>
             <span data-value={data.imt_name} onClick={cardTitle_animation} ref={cardTitle} className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
 
             <div className='flex gap-[10px] '>
-                <div className='flex-1 rounded-[5px]  flex flex-col gap-[10px] w-full'>
+                <div className='flex-1 rounded-[5px]  flex flex-col gap-[3vmin] w-full'>
                     <div className=' flex gap-[4vmin]'>
-                        <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className=' background_shadow_animation flex-1 flex flex-col  p-2 rounded shadow-md  transition-all easy-out '>
+                        <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className=' background_shadow_animation flex-1 flex flex-col  p-2   '>
                             <span className='text-[rgb(239, 239, 239)] font-[700]'>Основные параметры</span>
+
+
+
+                            {/* <div className='card_shadow'/> */}
+
+
 
                             <div className='flex inputBox'>
                                 <div className='w-[50%]'>
@@ -183,6 +188,7 @@ const FirstStep_card = () => {
                                     <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value) / 100))} />
                                 </div>
                             </div>
+
 
                         </div>
                         <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='rounded  background_shadow_animation flex-1 flex flex-col gap-[10px] '>
