@@ -101,7 +101,8 @@ input::-webkit-inner-spin-button {
     border: .3px solid #6b6b6b7e;
     border-radius: 10px;
     z-index: 2;
-    transition: border 1s ease;
+    transition: border 1s ease, color 0.3s ease;
+
     // background: black;
     // box-shadow: 1px -1px rgb(81, 81, 81), 3px -3px rgba(81, 81, 81, 0.568), 5px -5px rgba(81, 81, 81, 0.4);
 
@@ -178,6 +179,8 @@ input::-webkit-inner-spin-button {
     &::after {
         transform: translate3d(-50%, -50%, -4rem);
         background: #000000;
+        // clip-path: polygon(calc(100% - 25px) 0, 100% 25px, 100% 100%, 0 100%, 0 0);
+
         // box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
 
 
@@ -185,10 +188,11 @@ input::-webkit-inner-spin-button {
 
     &:hover {
         border: .5px solid #ffffff7e;
+        color:#ffffff9c;
 
         input:not(:disabled) {
             transform: translateZ(12rem);
-            border: .5px solid #ffffff7e;
+            border: .5px solid #ffffff9c;
 
         }
     }

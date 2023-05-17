@@ -30,7 +30,7 @@ export const cardHoverFunction = (event: React.MouseEvent<HTMLElement>) => {
     const gor = gorizontalPercentage / 100 * amplituda * 2
     event.currentTarget.animate({
         transform: `rotateX(${- ver + amplituda}deg) rotateY(${gor - amplituda}deg)`,
-        background: `radial-gradient(circle at ${gorizontalPercentage}% ${verticalPercentage}%, rgba(255, 255, 255, 0.125) 11%, rgba(66, 66, 66, 0.097) 57%)`,
+        background: `radial-gradient(circle at ${gorizontalPercentage}% ${verticalPercentage}%, rgba(255, 255, 255, 0.15) 11%, rgba(66, 66, 66, 0.097) 57%)`,
         zIndex: 0
 
     }, {
