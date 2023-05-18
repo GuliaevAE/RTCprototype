@@ -2,7 +2,6 @@ import axios from 'axios';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { OriginalStaf, changeOriginalStaf } from '../store/slices/goodsSlice';
-import Circle from './Circle';
 
 const Header = () => {
     const dispatch = useAppDispatch()
