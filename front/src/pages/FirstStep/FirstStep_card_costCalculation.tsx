@@ -47,12 +47,6 @@ const FirstStep_card_costCalculation = () => {
     const стоимость_до = useMemo(() => себестоимость_до + доставка_ед_до, [доставка_ед_до, себестоимость_до])
 
 
-
-
-
-
-
-
     const tableScroll = (e: any) => {
         if (e.currentTarget) {
             const target = e.currentTarget as HTMLElement
@@ -61,9 +55,6 @@ const FirstStep_card_costCalculation = () => {
         }
 
     }
-
-
-
 
     return (
         <>
