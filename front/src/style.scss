@@ -380,6 +380,7 @@ header {
 
     &:hover {
         transform: scale(1.1);
+        cursor: pointer;
     }
 
 
@@ -418,7 +419,7 @@ header {
     @for $i from 1 through 7 {
         div:nth-child(#{$i}) {
             height: #{$i * 16.6%};
-            animation-duration: #{$i + 3s};
+            animation-duration: #{$i  + 3s};
         }
     }
 
