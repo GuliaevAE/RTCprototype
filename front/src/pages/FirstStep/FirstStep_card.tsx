@@ -137,15 +137,15 @@ const FirstStep_card = () => {
             <div className='flex'>
                 <div className='flex-1 rounded-[5px]  flex flex-col gap-[4vmin] w-full'>
                     <div className=' flex gap-[4vmin] flex-wrap'>
-                        <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className=' background_shadow_animation flex-1 flex flex-col  p-2   '>
-                            <span className='text-[rgb(239, 239, 239)] font-[700]'>Основные параметры</span>
+                        <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className=' background_shadow_animation flex-1 flex flex-col  p-2 '>
+                            <span className='text-[rgb(239, 239, 239)] font-[700]  '>Основные параметры</span>
 
 
                             <div className='flex inputBox'>
                                 <div className='w-[50%]'>
                                     Габариты (см)
                                 </div>
-                                <div className='flex-1 flex '>
+                                <div className='flex-1 flex gap-1'>
                                     <input onInput={inputHandler_length} type="number" className='w-[100%] ' defaultValue={length ? length : ''} />
                                     <input onInput={inputHandler_width} type="number" className='w-[100%]  ' defaultValue={width ? width : ''} />
                                     <input onInput={inputHandler_height} type="number" className='w-[100%] ' defaultValue={height ? height : ''} />
@@ -155,7 +155,10 @@ const FirstStep_card = () => {
 
                             {dimensions(data.options).length === 3 && <div className='flex inputBox' >
                                 <div className='w-[50%]'>Объем (м³)</div>
-                                <input type="number" className='flex-auto' value={volume} />
+                                <div className='flex-1 flex '>
+                                    <input type="number" className='w-full' value={volume} />
+
+                                </div>
                             </div>}
 
 
@@ -187,7 +190,7 @@ const FirstStep_card = () => {
 
                         </div>
                         <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='rounded  background_shadow_animation flex-1 flex flex-col gap-[10px] '>
-                            <div className='relative  flex-1 flex flex-col p-2  transition-all easy-out'>
+                            <div className='relative  flex-1 flex flex-col p-2 gap-1  transition-all easy-out'>
                                 <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[rgb(239, 239, 239)]'>
                                     <Icon height="18" icon="ic:save" className='' />
                                 </div>

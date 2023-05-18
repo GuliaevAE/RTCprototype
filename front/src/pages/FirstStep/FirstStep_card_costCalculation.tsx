@@ -70,7 +70,7 @@ const FirstStep_card_costCalculation = () => {
             <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='background_shadow_animation scrollTable  flex flex-col p-2    '>
                 <h2>Расчет себестоимости </h2>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-scroll'>
-                    <table  >
+                    <table  className=''>
                         <tr>
                             <td className='text-[0.7rem]'>Комиссия</td>
                             <td className='text-[0.7rem]'>Средняя цена</td>
