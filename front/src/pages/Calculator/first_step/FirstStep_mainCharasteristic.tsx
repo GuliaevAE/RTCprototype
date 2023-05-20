@@ -77,7 +77,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
 
     return (
         <>
-            <span className='text-[rgb(239, 239, 239)] font-[700]  '>Основные параметры</span>
+            <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Основные параметры</span>
             <div className='flex inputBox'>
                 <div className='w-[50%]'>
                     Габариты (см)

@@ -51,26 +51,20 @@ const FirstStep_card = () => {
                     <Card additionalClass='flex-1'>
                         <FirstStep_mainCharasteristic />
                     </Card>
-                    <Card additionalClass=' flex-1 '>
-                        <div className='  flex-1 flex flex-col  gap-1'>
+                    <Card additionalClass='flex-1 '>
+                        <div className='flex-1 flex flex-col gap-1'>
                             <FirstStep_curs />
                         </div>
-                        <div className='flex-1 flex flex-col      '>
+                        <div className='flex-1 flex flex-col'>
                             <FirstStep_missingCharasteristic />
                         </div>
                     </Card>
-
                 </div>
                 <div className='flex gap-[4vmin] flex-col md:flex-row'>
                     <FirstStep_WBrent />
                     <FirstStep_costCalculation />
-
                 </div>
-
             </div>
-
-
-
         </article>
 
     );

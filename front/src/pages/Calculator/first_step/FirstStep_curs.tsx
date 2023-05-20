@@ -27,7 +27,7 @@ const FirstStep_calculator_curs = () => {
             <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[rgb(239, 239, 239)]'>
                 <Icon height="18" icon="ic:save" className='' />
             </div>
-            <span className='text-[rgb(239, 239, 239)] font-[700]'>Курс</span>
+            <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Курс</span>
             <div className='flex inputBox'>
                 <div className='w-[50%]'>
                     Доллар

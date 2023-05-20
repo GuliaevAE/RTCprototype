@@ -66,11 +66,8 @@ const SecondStep_card_table_WBrent = () => {
                     <Icon height="24" icon="ic:baseline-plus" className='' />
                 </div>
 
-                <h2 className=''>Калькулятор рента WB (цена от)</h2>
+                <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Калькулятор рента WB (цена от)</span>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
-
-
-
                     <div className='text-[0.7rem] tableItem'>
                         <div>Средняя цена</div>
                         <div>{средняяЦена}</div>
@@ -93,11 +90,11 @@ const SecondStep_card_table_WBrent = () => {
                     </div>}
                     {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
                         <div>Рентабельность_доля</div>
-                        <div>{Рентабельность_доля}</div>
+                        <div>{Рентабельность_доля!==-Infinity?Рентабельность_доля:0}</div>
                     </div>}
                     <div className='text-[0.7rem] tableItem'>
                         <div className='animation_missingCharasteristic'>Рентабельность, %.</div>
-                        <div>{Рентабельность_проценты}</div>
+                        <div>{Number(Рентабельность_проценты)!==-Infinity?Рентабельность_проценты:0}</div>
                     </div>
 
 

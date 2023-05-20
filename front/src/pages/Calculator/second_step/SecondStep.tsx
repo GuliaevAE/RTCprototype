@@ -14,14 +14,14 @@ const SecondStep = () => {
 
 
     return (
-        <article className='Second_card flex flex-col gap-[4vmin] mt-[4vmin]'>
+        <section className='Second_card flex flex-col gap-[4vmin] mt-[4vmin]'>
             <div className='card_title text-[1.2rem]'>
                 Второй этап
             </div>
             <div className='flex flex-col gap-[4vmin]'>
                 <div className='flex gap-[4vmin] flex-col md:flex-row'>
                     <Card additionalClass='h-[fit-content]'>
-                    <h2 className=''>Калькулятор рента WB (цена до)</h2>
+                        <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Новые цены (ю)</span>
                         <div className='flex gap-2 h-fit'>
                             <div className='flex-1 text-[.8rem] w-[max-content]'>
                                 Цена от (ю)
@@ -48,7 +48,7 @@ const SecondStep = () => {
 
             </div>
 
-        </article>
+        </section>
     );
 };
 

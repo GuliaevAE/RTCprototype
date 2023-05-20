@@ -71,7 +71,7 @@ const FirstStep_card_table_WBrent = () => {
                     <Icon height="24" icon="ic:baseline-plus" className='' />
                 </div>
 
-                <h2 className=''>Калькулятор рента WB</h2>
+                <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'> Калькулятор рента WB</span>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
                     <div className='text-[0.7rem] tableItem'>
                         <div>Средняя цена</div>
@@ -95,11 +95,11 @@ const FirstStep_card_table_WBrent = () => {
                     </div>}
                     {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
                         <div>Рентабельность_доля</div>
-                        <div>{Рентабельность_доля}</div>
+                        <div>{Рентабельность_доля ? Рентабельность_доля : 0}</div>
                     </div>}
                     <div className='text-[0.7rem] tableItem'>
                         <div className='animation_missingCharasteristic'>Рентабельность, %.</div>
-                        <div>{Рентабельность_проценты}</div>
+                        <div>{Number(Рентабельность_проценты) ? Рентабельность_проценты : 0}</div>
                     </div>
 
                     {/* <table  >

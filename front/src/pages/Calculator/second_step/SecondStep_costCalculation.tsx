@@ -76,7 +76,7 @@ const SecondStep_card_costCalculation = () => {
             hover:scale-[1.2] hover:text-[white] hover:rotate-[45deg] transition-all'>
                 <Icon height="24" icon="ic:baseline-plus" className='' />
             </div>
-            <h2>Расчет себестоимости </h2>
+            <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Расчет себестоимости </span>
             <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
                 {switcher && <div className='text-[0.7rem] tableItem'>
                     <div>Комиссия</div>

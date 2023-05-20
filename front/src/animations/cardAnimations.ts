@@ -42,7 +42,9 @@ export const cardHoverFunction = (event: React.MouseEvent<HTMLElement>) => {
 export const cardLeaveFunction = (e: React.MouseEvent<HTMLElement>) => {
     e.currentTarget.animate({
         transform: `rotateX(0deg) rotateY(0deg)`,
-        zIndex: 2
+        zIndex: 2,
+        // backgroundImage: `radial-gradient(circle at 1% 1%, rgba(255, 255, 255, 0.15) 11%, rgba(66, 66, 66, 0.097) 57%)`,
+
 
     }, {
         duration: 1000, fill: "forwards", easing: 'ease-out'
