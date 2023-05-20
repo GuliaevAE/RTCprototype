@@ -51,13 +51,11 @@ const FirstStep_card_table_WBrent = () => {
 
 
 
-    const tableScroll = (e: any) => {
-        if (e.currentTarget) {
-            const target = e.currentTarget as HTMLElement
-            target.scrollLeft += e.deltaY
-
-        }
-
+    const tableScroll = () => {
+        // if (e.currentTarget) {
+        //     const target = e.currentTarget as HTMLElement
+        //     target.scrollLeft += e.deltaY
+        // }
     }
 
     useEffect(() => {

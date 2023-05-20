@@ -9,9 +9,6 @@ const FirstStep_calculator_curs = () => {
     const curs_dol = useAppSelector(Curs_dol)
     const curs_uan = useAppSelector(Curs_uan)
 
-
-   
-
     const saveCurs = () => {
         localStorage.setItem('dol', String(curs_dol))
         localStorage.setItem('uan', String(curs_uan))
@@ -24,9 +21,7 @@ const FirstStep_calculator_curs = () => {
         const saved_uan = localStorage.getItem('uan')
         saved_dol && dispatch(changeCurs_dol(Number(saved_dol)))
         saved_uan && dispatch(changeCurs_uan(Number(saved_uan)))
-        console.log('saved_dol',saved_dol )
-
-    },[])
+    },[dispatch])
     return (
         <>
             <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[rgb(239, 239, 239)]'>

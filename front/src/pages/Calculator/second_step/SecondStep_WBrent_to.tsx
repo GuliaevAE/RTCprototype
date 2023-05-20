@@ -7,12 +7,7 @@ import Card from '../Card';
 
 
 const SecondStep_card_table_WBrent = () => {
-
-
     const [switcherForOptionalParameters, setSwitch] = useState<boolean>(false)
-
-
-
 
     ///табличные параметры 
     const Длинна = useAppSelector(Length)
@@ -52,11 +47,11 @@ const SecondStep_card_table_WBrent = () => {
     // const МаржинальнаяПрибыль = useMemo(() => ВаловаяПрибыль - хранение - Отзывы - Проценты_маркетинг_продвижение, [ВаловаяПрибыль, Отзывы])
 
 
-    const tableScroll = (e: any) => {
-        if (e.currentTarget) {
-            const target = e.currentTarget as HTMLElement
-            target.scrollLeft += e.deltaY
-        }
+    const tableScroll = () => {
+        // if (e.currentTarget) {
+        //     const target = e.currentTarget as HTMLElement
+        //     target.scrollLeft += e.deltaY
+        // }
     }
 
     return (

@@ -26,18 +26,13 @@ const SecondStep_card_costCalculation = () => {
     const объем = useAppSelector(Volume)
 
     const расчетВеса_добор15 = useMemo(() => вес + вес * 0.15, [вес])
-    // const [ставка_кг_м3, setставка] = useState(0)
     const ставка_кг_м3 = useAppSelector(Rate_per_kg)
     const вРублях = useMemo(() => ставка_кг_м3 * Курс_доллар_16, [Курс_доллар_16, ставка_кг_м3])
     const ставка_едТовара = useMemo(() => вРублях * расчетВеса_добор15, [вРублях, расчетВеса_добор15])
 
-    // const цена_юани_от = useMemo(() => (ценаОриентир - (ставка_едТовара + стоимостьУпаковки)) / Курс_юань_надбавка / 1.01, [Курс_юань_надбавка, ставка_едТовара, стоимостьУпаковки, ценаОриентир])
     const цена_юани_от = useAppSelector(Price_uan_from)
 
-    // const [цена_юани_до, setцена_юани_до] = useState(0)
     const цена_юани_до = useAppSelector(Price_uan_to)
-
-
 
 
     const себестоимость_от = useMemo(() => цена_юани_от * Курс_юань_надбавка, [Курс_юань_надбавка, цена_юани_от])
@@ -66,12 +61,11 @@ const SecondStep_card_costCalculation = () => {
         dispatch(changeCost_price_to(стоимость_до))
     }, [dispatch, стоимость_до])
 
-    const tableScroll = (e: any) => {
-        if (e.currentTarget) {
-            const target = e.currentTarget as HTMLElement
-            target.scrollLeft += e.deltaY
-
-        }
+    const tableScroll = () => {
+        // if (e.currentTarget) {
+        //     const target = e.currentTarget as HTMLElement
+        //     target.scrollLeft += e.deltaY
+        // }
 
     }
 
