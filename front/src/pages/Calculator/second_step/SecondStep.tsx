@@ -19,7 +19,7 @@ const SecondStep = () => {
                 Второй этап
             </div>
             <div className='flex flex-col gap-[4vmin]'>
-                <div className='flex gap-[4vmin]'>
+                <div className='flex gap-[4vmin] flex-col md:flex-row'>
                     <Card additionalClass='h-[fit-content]'>
                     <h2 className=''>Калькулятор рента WB (цена до)</h2>
                         <div className='flex gap-2 h-fit'>
@@ -41,7 +41,7 @@ const SecondStep = () => {
 
                 </div>
 
-                <div className='flex gap-[4vmin]'>
+                <div className='flex gap-[4vmin] flex-col md:flex-row'>
                     <SecondStep_WBrent_from />
                     <SecondStep_WBrent_to />
                 </div>

@@ -485,5 +485,6 @@ header {
 
 
 .FirstStep_card_table_WBrent_item {
-    width: calc(50% - 2vmin);
+    // width: calc(50% - 2vmin);
+    flex: 1 1 0;
 }

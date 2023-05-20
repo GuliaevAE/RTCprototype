@@ -47,8 +47,8 @@ const FirstStep_card = () => {
                 <div className='card_title text-[1.2rem]'>
                     Первый этап
                 </div>
-                <div className=' flex gap-[4vmin] flex-wrap'>
-                    <Card>
+                <div className=' flex gap-[4vmin] flex-wrap flex-col md:flex-row'>
+                    <Card additionalClass='flex-1'>
                         <FirstStep_mainCharasteristic />
                     </Card>
                     <Card additionalClass=' flex-1 '>
