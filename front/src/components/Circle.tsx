@@ -5,7 +5,7 @@ const Circle = () => {
     const colors = Array(21).fill("");
 
     const getFileName = (index: number) => {
-        return `wave-key-${index}`;
+        return `key-${index}`;
     }
 
     const getUrl = (index: number) => `https://assets.codepen.io/1468070/${getFileName(index)}.wav`;

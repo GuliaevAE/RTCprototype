@@ -1,19 +1,14 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import { Length, Width, Height, Commission, AveragePrice, changePurchasePrice } from '../../store/slices/goodsSlice';
-import { cardHoverFunction, cardLeaveFunction } from '../../animations/cardAnimations';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks'
+import { Length, Width, Height, Commission, AveragePrice, changePurchasePrice } from '../../../store/slices/goodsSlice';
+import Card from '../Card';
 
 
 
 const FirstStep_card_table_WBrent = () => {
-
-
     const dispatch = useAppDispatch()
     const [switcherForOptionalParameters, setSwitch] = useState<boolean>(false)
-
-
-
 
     ///табличные параметры 
     const Длинна = useAppSelector(Length)
@@ -21,7 +16,6 @@ const FirstStep_card_table_WBrent = () => {
     const Высота = useAppSelector(Height)
 
     const средняяЦена = useAppSelector(AveragePrice)
-    // const [ценаЗакупа, setценаЗакупа] = useState<number>(0)
     const комиссия = useAppSelector(Commission)
     const объем = useMemo(() => Длинна * Ширина * Высота / 1000, [Высота, Длинна, Ширина])
     const СреднийТарифЛогистики = 73.375
@@ -45,13 +39,15 @@ const FirstStep_card_table_WBrent = () => {
     const Отзывы_логистикаПлюсСклад_проценты = useMemo(() => Отзывы_логистикаПлюсСклад / средняяЦена, [средняяЦена, Отзывы_логистикаПлюсСклад])
     const Отзывы_комиссияПлюсНалоги = useMemo(() => (комиссия * 0.767 + налоги) * 0.21, [комиссия])
     const Отзывы = useMemo(() => Отзывы_логистикаПлюсСклад_проценты + Отзывы_комиссияПлюсНалоги + Отзывы_фиксы_проценты, [Отзывы_логистикаПлюсСклад_проценты, Отзывы_комиссияПлюсНалоги])
-    const Расход_маркетинг_продвижение = useMemo(() => средняяЦена * Проценты_маркетинг_продвижение, [средняяЦена])
 
     const Рентабельность_доля = useMemo(() => 1 - (комиссия + ЛогистикаНа1Заказ_проценты + хранение + товар + налоги + брак + УпаковкаПлюсМашина + Отзывы + Фот + Проценты_маркетинг_продвижение), [ЛогистикаНа1Заказ_проценты, Отзывы, УпаковкаПлюсМашина, комиссия, товар])
-    const Рентабельность_от_продажи = useMemo(() => Рентабельность_доля * средняяЦена, [средняяЦена, Рентабельность_доля])
     const Рентабельность_проценты = useMemo(() => (Рентабельность_доля * 100).toFixed(2), [Рентабельность_доля])
-    const ВаловаяПрибыль = useMemo(() => 1 - комиссия - ЛогистикаНа1Заказ_проценты - товар - налоги - УпаковкаПлюсМашина, [ЛогистикаНа1Заказ_проценты, УпаковкаПлюсМашина, комиссия, товар])
-    const МаржинальнаяПрибыль = useMemo(() => ВаловаяПрибыль - хранение - Отзывы - Проценты_маркетинг_продвижение, [ВаловаяПрибыль, Отзывы])
+
+    //рабочее
+    // const Расход_маркетинг_продвижение = useMemo(() => средняяЦена * Проценты_маркетинг_продвижение, [средняяЦена])
+    // const Рентабельность_от_продажи = useMemo(() => Рентабельность_доля * средняяЦена, [средняяЦена, Рентабельность_доля])
+    // const МаржинальнаяПрибыль = useMemo(() => ВаловаяПрибыль - хранение - Отзывы - Проценты_маркетинг_продвижение, [ВаловаяПрибыль, Отзывы])
+    // const ВаловаяПрибыль = useMemo(() => 1 - комиссия - ЛогистикаНа1Заказ_проценты - товар - налоги - УпаковкаПлюсМашина, [ЛогистикаНа1Заказ_проценты, УпаковкаПлюсМашина, комиссия, товар])
 
 
 
@@ -71,14 +67,44 @@ const FirstStep_card_table_WBrent = () => {
 
     return (
         <>
-            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className='background_shadow_animation   flex flex-col p-2   '>
-                <div onClick={() => setSwitch(!switcherForOptionalParameters)} className='absolute top-[0px] right-[0px] flex justify-center align-center '>
+            <Card additionalClass=''>
+                <div onClick={() => setSwitch(!switcherForOptionalParameters)} className='absolute top-[5px] right-[5px] flex justify-center align-center 
+                hover:scale-[1.2] hover:text-[white] hover:rotate-[45deg] transition-all'>
                     <Icon height="24" icon="ic:baseline-plus" className='' />
                 </div>
 
                 <h2 className=''>Калькулятор рента WB</h2>
-                <div onWheel={tableScroll} className='scrollTable overflow-x-scroll'>
-                    <table  >
+                <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
+                    <div className='text-[0.7rem] tableItem'>
+                        <div>Средняя цена</div>
+                        <div>{средняяЦена}</div>
+                    </div>
+                    <div className='text-[0.7rem] tableItem'>
+                        <div>Цена закупа</div>
+                        <div>{ценаЗакупа}</div>
+                    </div>
+                    <div className='text-[0.7rem] tableItem'>
+                        <div>Объем, л</div>
+                        <div>{объем}</div>
+                    </div>
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                        <div>Средний тариф логистики по складам</div>
+                        <div>{СреднийТарифЛогистики}</div>
+                    </div>}
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                        <div>Логистика от объёма</div>
+                        <div>{ЛогистикаотОбъема}</div>
+                    </div>}
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                        <div>Рентабельность_доля</div>
+                        <div>{Рентабельность_доля}</div>
+                    </div>}
+                    <div className='text-[0.7rem] tableItem'>
+                        <div className='animation_missingCharasteristic'>Рентабельность, %.</div>
+                        <div>{Рентабельность_проценты}</div>
+                    </div>
+
+                    {/* <table  >
                         <tr>
                             <td className='text-[0.7rem] '>Средняя цена</td>
                             <td className='text-[0.7rem] '>Цена закупа</td>
@@ -142,17 +168,13 @@ const FirstStep_card_table_WBrent = () => {
 
 
 
-                    </table>
+                    </table> */}
                 </div>
-
-
-            </div>
-            <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className={`${switcherForOptionalParameters ? '' : 'hide'} background_shadow_animation scrollTable  flex flex-col p-2 rounded`}>
-
+            </Card>
+            {/* {switcherForOptionalParameters && <Card >
                 <h2>Скрытые вычисления</h2>
-                <div onWheel={tableScroll} className='scrollTable overflow-x-scroll'>
+                <div onWheel={tableScroll} className='scrollTable overflow-x-auto'>
                     <table>
-                        {/* скарытые вычисления */}
                         <tr>
                             <td>Логистика на 1 заказ в абсолютном значении</td>
                             <td>Логистика на 1 заказ в %</td>
@@ -225,9 +247,9 @@ const FirstStep_card_table_WBrent = () => {
                     </table>
 
                 </div>
+            </Card>} */}
 
 
-            </div>
         </>
 
     );

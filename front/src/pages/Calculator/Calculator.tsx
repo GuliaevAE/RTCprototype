@@ -2,15 +2,17 @@ import Circle from '../../components/Circle';
 import { useAppSelector } from '../../store/hooks'
 import { OriginalStaf } from '../../store/slices/goodsSlice';
 
-import FirstStep_card from './FirstStep_card';
-const FirstStep = () => {
+import FirstStep from './first_step/FirstStep';
+import SecondStep from './second_step/SecondStep';
+const Calculator = () => {
     const originalStaf = useAppSelector(OriginalStaf)
     return (
         <div className='py-[3vmin] px-[5vmin]'>
             <Circle/>
-            {originalStaf && <FirstStep_card />}
+            {originalStaf && <FirstStep />}
+            {originalStaf && <SecondStep />}
         </div>
     );
 };
 
-export default FirstStep;
+export default Calculator;

@@ -1,8 +1,44 @@
 .scrollTable {
-    padding-bottom: 5px;
+    padding-bottom: 10px;
+
+    // &::-webkit-scrollbar {
+    //     opacity: 0;
+    // }
+    .tableItem {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 5px;
+        flex: 1 1 0%;
+        div {
+            width: max-content;
+
+            &:nth-child(2) {
+                border: 1px solid #6b6b6b7e;
+                border-radius: 5px;
+                width: 100%;
+                padding: 3px 6px;
+                font-size: .8rem;
+            }
+        }
+
+        // border: 1px solid red
+    }
 
     &::-webkit-scrollbar {
-        opacity: 0;
+        height: 6px;
+
+    }
+
+    &::-webkit-scrollbar-track {
+        border: 1px solid #6b6b6b7e;
+        border-radius: 5px
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #ffffff9c;
+        border-radius: 5px;
+        cursor: pointer;
     }
 }
 
@@ -14,22 +50,11 @@ input[type='number'] {
     transition: all .3s;
     position: relative;
 
-    &:focus {
-        // overflow: hidden;
-        // color: black;
-        // transform: translate(-5px, 5px);
-        // box-shadow: 2.5px -2.5px rgba(126, 126, 126, 0.859), 5px -5px rgba(126, 126, 126, 0.415);
-
-    }
+  
 
 }
 
 
-
-
-input:disabled {
-    // box-shadow: inset 0 0 3px 0px rgba(0, 0, 0, 0.822);
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -38,7 +63,7 @@ input::-webkit-inner-spin-button {
 }
 
 
-.FirstStep_card {
+.FirstStep_card, .Second_card {
     animation: FirstStep_card_open .8s ease;
     z-index: 0;
 }
@@ -68,6 +93,7 @@ input::-webkit-inner-spin-button {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: textclip 5s linear infinite;
+    font-weight: 700;
 }
 
 
@@ -88,8 +114,8 @@ input::-webkit-inner-spin-button {
     animation: textclip 5s linear infinite;
     display: inline-block;
     z-index: 99;
-  
-    
+
+
     // -webkit-text-stroke-width: .3px;
     // -webkit-text-stroke-color: #fff;
 }
@@ -203,6 +229,7 @@ input::-webkit-inner-spin-button {
 
         input:not(:disabled) {
             transform: translateZ(4rem);
+
         }
 
 
@@ -210,7 +237,6 @@ input::-webkit-inner-spin-button {
 
         input:not(:disabled) {
             border: .5px solid #ffffff9c;
-
         }
 
 
@@ -226,10 +252,7 @@ input::-webkit-inner-spin-button {
     }
 
     ////////////////////////////////////
-    div,
-    td,
-    td,
-    table {
+    div {
         transform-style: preserve-3d;
     }
 
@@ -266,22 +289,22 @@ input::-webkit-inner-spin-button {
 
 }
 
-.FirstStep_card {
-    .background_shadow_animation {
+// .FirstStep_card {
+//     .background_shadow_animation {
 
-        &:nth-child(1) {
-            animation-delay: 1s;
-        }
+//         &:nth-child(1) {
+//             animation-delay: 1s;
+//         }
 
-        &:nth-child(2) {
-            animation-delay: 1.5s;
-        }
+//         &:nth-child(2) {
+//             animation-delay: 1.5s;
+//         }
 
-        &:nth-child(4) {
-            animation-delay: 2s;
-        }
-    }
-}
+//         &:nth-child(4) {
+//             animation-delay: 2s;
+//         }
+//     }
+// }
 
 
 
@@ -377,10 +400,12 @@ header {
     min-height: 11vmin;
     height: fit-content;
     transition: transform .3s ease;
+    cursor: pointer;
+
+    
 
     &:hover {
         transform: scale(1.1);
-        cursor: pointer;
     }
 
 
@@ -446,4 +471,19 @@ header {
         }
     }
 
+}
+
+
+// table{
+//     &::-webkit-scrollbar{
+//         height: 5px;
+//     }
+//     &::-webkit-scrollbar-thumb{
+//         color:white
+//     }
+// }
+
+
+.FirstStep_card_table_WBrent_item {
+    width: calc(50% - 2vmin);
 }

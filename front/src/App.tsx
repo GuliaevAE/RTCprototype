@@ -8,7 +8,7 @@ import {
   
 } from "react-router-dom";
 import Header from './components/Header'
-import FirstStep from './pages/FirstStep/FirstStep';
+import FirstStep from './pages/Calculator/Calculator';
 
 function App() {
 
