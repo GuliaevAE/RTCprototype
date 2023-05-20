@@ -50,7 +50,7 @@ const Circle = () => {
     }
 
     return (
-        <div id='Circle' onClick={clickOnCircle} className={`circles ${switcher && 'active'}`}>
+        <div id='Circle' onClick={clickOnCircle} className={`circles ${switcher && 'active'} hidden md:block`}>
             {[1, 2, 3, 4, 5, 6].map(x => <div key={x} id={String(x)}></div>)}
            
         </div>
