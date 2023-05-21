@@ -8,6 +8,8 @@ type ICardProps = {
 const Card = ({ children, additionalClass }: ICardProps) => {
     return (
         <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className={` ${additionalClass?additionalClass:''}   background_shadow_animation  flex flex-col p-3`}>
+          <div className='glass'></div>
+          
             {children}
         </div>
     );

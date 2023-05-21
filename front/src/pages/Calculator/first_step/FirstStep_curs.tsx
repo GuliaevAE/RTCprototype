@@ -12,16 +12,16 @@ const FirstStep_calculator_curs = () => {
     const saveCurs = () => {
         localStorage.setItem('dol', String(curs_dol))
         localStorage.setItem('uan', String(curs_uan))
-        console.log('curs saved' )
+        console.log('curs saved')
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         const saved_dol = localStorage.getItem('dol')
         const saved_uan = localStorage.getItem('uan')
         saved_dol && dispatch(changeCurs_dol(Number(saved_dol)))
         saved_uan && dispatch(changeCurs_uan(Number(saved_uan)))
-    },[dispatch])
+    }, [dispatch])
     return (
         <>
             <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[rgb(239, 239, 239)]'>
@@ -33,7 +33,7 @@ const FirstStep_calculator_curs = () => {
                     Доллар
                 </div>
                 <div className='flex-1 flex'>
-                    <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_dol(Number(e.target.value)))} defaultValue={curs_dol ? curs_dol : ''} />
+                    <div className='input_3d w-[100%]'><input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_dol(Number(e.target.value)))} defaultValue={curs_dol ? curs_dol : ''} /></div>
                 </div>
             </div>
             <div className='flex inputBox'>
@@ -41,7 +41,7 @@ const FirstStep_calculator_curs = () => {
                     Юаня
                 </div>
                 <div className='flex-1 flex'>
-                    <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_uan(Number(e.target.value)))} defaultValue={curs_uan ? curs_uan : ''} />
+                    <div className='input_3d w-[100%]'>  <input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_uan(Number(e.target.value)))} defaultValue={curs_uan ? curs_uan : ''} /></div>
                 </div>
             </div>
         </>

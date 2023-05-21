@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Icon } from '@iconify/react';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks'
 import { Length, Width, Height, Commission, AveragePrice, changePurchasePrice } from '../../../store/slices/goodsSlice';
 import Card from '../Card';
+import Icon_cross from '../../../components/Icon_cross';
 
 
 
@@ -66,10 +66,7 @@ const FirstStep_card_table_WBrent = () => {
     return (
         <>
             <Card additionalClass=''>
-                <div onClick={() => setSwitch(!switcherForOptionalParameters)} className='absolute top-[5px] right-[5px] flex justify-center align-center 
-                hover:scale-[1.2] hover:text-[white] hover:rotate-[45deg] transition-all'>
-                    <Icon height="24" icon="ic:baseline-plus" className='' />
-                </div>
+                <Icon_cross clickFunction={() => setSwitch(!switcherForOptionalParameters)} />
 
                 <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'> Калькулятор рента WB</span>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>

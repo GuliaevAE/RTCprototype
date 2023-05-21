@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Icon } from '@iconify/react';
 import { useAppDispatch, useAppSelector, } from '../../../store/hooks'
 import { Weight, Commission, AveragePrice, PurchasePrice, Volume, Curs_dol, Curs_uan, changeDensity, Rate_per_kg } from '../../../store/slices/goodsSlice';
 import Card from '../Card';
+import Icon_cross from '../../../components/Icon_cross';
 
 
 const FirstStep_card_costCalculation = () => {
@@ -65,11 +65,7 @@ const FirstStep_card_costCalculation = () => {
 
     return (
         <Card additionalClass='flex-auto'>
-            <div onClick={() => setSwitch(!switcher)}
-                className='absolute top-[5px] right-[5px] flex justify-center align-center 
-            hover:scale-[1.2] hover:text-[white] hover:rotate-[45deg] transition-all'>
-                <Icon height="24" icon="ic:baseline-plus" className='' />
-            </div>
+          <Icon_cross clickFunction={() => setSwitch(!switcher)}/>
             <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Расчет себестоимости </span>
             <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
                 {switcher && <div className='text-[0.7rem] tableItem'>

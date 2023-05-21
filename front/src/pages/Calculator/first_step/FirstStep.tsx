@@ -19,13 +19,13 @@ const FirstStep_card = () => {
 
     const cardTitle_animation = () => {
         const target = cardTitle.current
-        const letters = "ABCDEFGHILMNOPQRSTUVWXYZabcdefghilmnopqrstuvwxyz"
+        const letters = "ABCDEFGHILMNOPQRSTUVWXYZ"
         let iterations = 0;
         const interval = setInterval(() => {
             target.innerText = target.innerText.split('')
                 .map((_letter: string, index: number) => {
                     if (index < iterations) return target.dataset.value[index]
-                    return letters[Math.floor(Math.random() * 48)]
+                    return letters[Math.floor(Math.random() * 24)]
                 }).join('')
 
             if (iterations >= target.dataset.value.length) clearInterval(interval)
@@ -34,9 +34,9 @@ const FirstStep_card = () => {
         }, 50)
     }
 
-    useEffect(() => {
-        cardTitle_animation()
-    }, [])
+    // useEffect(() => {
+    //     cardTitle_animation()
+    // }, [])
 
     return (
         <article className='FirstStep_card relative flex flex-col gap-[10px] p-2  text-[grey]  text-[.8rem] '>

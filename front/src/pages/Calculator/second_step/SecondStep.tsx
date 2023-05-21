@@ -26,13 +26,13 @@ const SecondStep = () => {
                             <div className='flex-1 text-[.8rem] w-[max-content]'>
                                 Цена от (ю)
                             </div>
-                            <input type="number" className='' onInput={inputHandler_price_uan_from} />
+                           <div className='input_3d'> <input type="number" className='' onInput={inputHandler_price_uan_from} /></div>
                         </div>
                         <div className='flex'>
                             <div className='flex-1 text-[.8rem] w-[max-content]'>
                                 Цена до (ю)
                             </div>
-                            <input type="number" className='' onInput={inputHandler_price_uan_to} />
+                         <div className='input_3d'>   <input type="number" className='' onInput={inputHandler_price_uan_to} /></div>
                         </div>
 
                     </Card>

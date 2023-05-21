@@ -31,10 +31,6 @@ const Circle = () => {
     }, [keys])
 
 
-
-
-
-
     const clickOnCircle = (e: React.MouseEvent) => {
         const target = e.currentTarget
         target.animate([{

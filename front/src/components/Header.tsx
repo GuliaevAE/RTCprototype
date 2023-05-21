@@ -33,8 +33,8 @@ const Header = () => {
     return (
         <header className='w-full pt-[3vmin] px-[5vmin] flex relative z-[1] gap-4 flex-wrap'>
             <form onSubmit={event => submitHandler(event)} className='flex flex-auto md:flex-none'>
-                <input id='originalStaf_input' className='border-[.1px] border-solid border-[white] text-[white] bg-[black] px-2 rounded-l w-full' placeholder='Идентификатор WB' type="text" />
-                <button className='border-[.1px] border-solid border-[white] rounded-r p-1 px-2 '>Найти</button>
+                <input id='originalStaf_input' className='border-[.1px] border-solid border-[black] text-[white] bg-[black] px-2 rounded-l w-full' placeholder='Идентификатор WB' type="text" />
+                <button className='border-[.1px] border-solid border-[black] text-[black] rounded-r p-1 px-2 '>Найти</button>
             </form>
             {originalStaf && <div className='header_links flex gap-4'>
                 <div className=''>

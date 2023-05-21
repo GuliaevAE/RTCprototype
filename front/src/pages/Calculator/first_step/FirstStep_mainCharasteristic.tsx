@@ -15,7 +15,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
     const weight = useAppSelector(Weight)
     const length = useAppSelector(Length)
     const width = useAppSelector(Width)
-    const height = useAppSelector(Height) 
+    const height = useAppSelector(Height)
     const volume = useAppSelector(Volume)
 
     const inputHandler_length = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeLength(Number(e.target.value)))
@@ -28,7 +28,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
         const subArr: string[] = ['Длина упаковки', 'Ширина упаковки', 'Высота упаковки']
         subArr.forEach(characteristic => {
             const target = options.find((x: IDataOption_item) => x.name === characteristic)
-            if (target) arr.push(target) 
+            if (target) arr.push(target)
         })
         return arr
     }
@@ -83,9 +83,9 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     Габариты (см)
                 </div>
                 <div className='flex-1 flex gap-1'>
-                    <input onInput={inputHandler_length} type="number" className='w-[100%] ' defaultValue={length ? length : ''} />
-                    <input onInput={inputHandler_width} type="number" className='w-[100%]  ' defaultValue={width ? width : ''} />
-                    <input onInput={inputHandler_height} type="number" className='w-[100%] ' defaultValue={height ? height : ''} />
+                    <div className='input_3d w-full'> <input onInput={inputHandler_length} type="number" className='w-full ' defaultValue={length ? length : ''} /></div>
+                    <div className='input_3d w-full'> <input onInput={inputHandler_width} type="number" className='w-full  ' defaultValue={width ? width : ''} /></div>
+                    <div className='input_3d w-full'>  <input onInput={inputHandler_height} type="number" className='w-full ' defaultValue={height ? height : ''} /></div>
                 </div>
             </div>
 
@@ -93,8 +93,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
             {dimensions(data.options).length === 3 && <div className='flex inputBox' >
                 <div className='w-[50%]'>Объем (м³)</div>
                 <div className='flex-1 flex '>
-                    <input type="number" className='w-full' value={volume} />
-
+                    <div className='input_3d w-full'> <input type="number" className='w-full' value={volume} /></div>
                 </div>
             </div>}
 
@@ -104,7 +103,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     Вес с упаковкой (г)
                 </div>
                 <div className='flex-1 flex '>
-                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWeight(Number(e.target.value)))} defaultValue={weight ? weight : ''} />
+                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeWeight(Number(e.target.value)))} defaultValue={weight ? weight : ''} /></div>
                 </div>
             </div>
             <div className='flex inputBox'>
@@ -112,7 +111,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     Средняя цена
                 </div>
                 <div className='flex-1 flex '>
-                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeAveragePrice(Number(e.target.value)))} />
+                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeAveragePrice(Number(e.target.value)))} /></div>
                 </div>
             </div>
             <div className='flex inputBox'>
@@ -120,7 +119,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     Комиссия (%)
                 </div>
                 <div className='flex-1 flex '>
-                    <input type="number" className='w-[100%]' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value) / 100))} />
+                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value) / 100))} /></div>
                 </div>
             </div>
 
@@ -129,8 +128,8 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     Плотность и ставка
                 </div>
                 <div className='flex-1 flex gap-1'>
-                    <input disabled className='w-[100%]' value={density} type="number" />
-                    <input onInput={inputHeandler_ставка} className='w-[100%]  ' defaultValue={ставка_кг_м3} type="number" />
+                    <input disabled className='w-full' value={density} type="number" />
+                    <div className='input_3d w-full'><input onInput={inputHeandler_ставка} className='w-full' defaultValue={ставка_кг_м3} type="number" /></div>
                 </div>
             </div>
         </>
