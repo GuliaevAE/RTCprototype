@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { OriginalStaf, changeOriginalStaf } from '../store/slices/goodsSlice';
+import { AnimSwitcher, OriginalStaf, changeAnimSwitcher, changeOriginalStaf } from '../store/slices/goodsSlice';
 
 const Header = () => {
     const dispatch = useAppDispatch()
     const originalStaf = useAppSelector(OriginalStaf)
-
+    const animSwitcher = useAppSelector(AnimSwitcher)
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const target = e.currentTarget
@@ -30,6 +30,8 @@ const Header = () => {
         }
     }
 
+
+
     return (
         <header className='w-full pt-[3vmin] px-[5vmin] flex relative z-[1] gap-4 flex-wrap'>
             <form onSubmit={event => submitHandler(event)} className='flex flex-auto md:flex-none'>
@@ -44,8 +46,12 @@ const Header = () => {
                     <a target="_blank" href={originalStaf.links.link_mp} className='leading-[2rem]'>MP</a>
                 </div>
 
+            </div>}
+            <div onClick={() => dispatch(changeAnimSwitcher())}
+                className={`${animSwitcher ? 'bg-[black] text-[white]' : ' text-[black]'} border-solid border-[2px] border-[black] px-3 py-2 fixed top-[3vmin] right-[4vmin] font-[600] rounded-[5px]`}>
+                <span>{animSwitcher ? 'ON' : 'OFF'}</span>
             </div>
-            }
+
 
         </header>
     );

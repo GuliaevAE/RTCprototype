@@ -1,4 +1,4 @@
-import Circle from '../../components/Circle';
+// import Circle from '../../components/Circle';
 import { useAppSelector } from '../../store/hooks'
 import { OriginalStaf } from '../../store/slices/goodsSlice';
 
@@ -8,7 +8,7 @@ const Calculator = () => {
     const originalStaf = useAppSelector(OriginalStaf)
     return (
         <div className='py-[3vmin] px-[5vmin]'>
-            <Circle/>
+            {/* <Circle/> */}
             {originalStaf && <FirstStep />}
             {originalStaf && <SecondStep />}
         </div>

@@ -1,4 +1,6 @@
 import { cardHoverFunction, cardLeaveFunction } from '../../animations/cardAnimations';
+import { useAppSelector } from '../../store/hooks';
+import { AnimSwitcher } from '../../store/slices/goodsSlice';
 
 type ICardProps = {
     children: string | JSX.Element | JSX.Element[],
@@ -6,8 +8,10 @@ type ICardProps = {
 }
 
 const Card = ({ children, additionalClass }: ICardProps) => {
+const animSwicther = useAppSelector(AnimSwitcher)
+
     return (
-        <div onMouseMove={cardHoverFunction} onMouseLeave={cardLeaveFunction} className={` ${additionalClass?additionalClass:''}   background_shadow_animation  flex flex-col p-3`}>
+        <div onMouseMove={(e)=>cardHoverFunction(e, animSwicther)} onMouseLeave={(e)=>cardLeaveFunction(e, animSwicther)} className={` ${additionalClass?additionalClass:''}   background_shadow_animation  flex flex-col p-3`}>
           <div className='glass'></div>
           
             {children}

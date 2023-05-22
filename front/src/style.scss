@@ -152,13 +152,13 @@ input::-webkit-inner-spin-button {
     // background-size: 200% auto;
 
     &::before {
-        transform: translate3d(-50%, -50%, -.2rem);
+        transform: translate3d(-50%, -50%, -2rem);
         background: rgb(97, 97, 97);
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
 
     &::after {
-        transform: translate3d(-50%, -50%, -.1rem);
+        transform: translate3d(-50%, -50%, -1rem);
         background: rgb(0, 0, 0);
         background: rgb(120, 120, 120);
 
@@ -205,7 +205,7 @@ input::-webkit-inner-spin-button {
     &:hover {
         .input_3d {
             &::before {
-                transform: translate3d(-50%, -50%, 0rem);
+                transform: translate3d(-50%, -50%, 0.1rem);
                 background: rgb(97, 97, 97);
                 box-shadow: var(--inputShadow_3);
             }
@@ -219,6 +219,7 @@ input::-webkit-inner-spin-button {
             input:not(:disabled) {
                 transform: translateZ(2rem);
                 box-shadow: none;
+                background:#fff
 
             }
 
@@ -242,7 +243,7 @@ input::-webkit-inner-spin-button {
 
     input {
         transition: all .6s ease-out;
-        box-shadow: var(--inputShadow_1);
+        box-shadow: var(--inputShadow_2);
         display: block;
         background: rgb(240, 240, 240);
 

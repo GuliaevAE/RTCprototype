@@ -4,6 +4,9 @@ import type { RootState } from '../store'
 
 
 interface CounterState {
+
+  animSwitcher: boolean,
+
   originalStaf: any,
 
   length: number,
@@ -30,11 +33,12 @@ interface CounterState {
 
 
 
-  density:number
+  density: number
 
 }
 
 const initialState: CounterState = {
+  animSwitcher: false,
 
 
   //first step
@@ -65,13 +69,19 @@ const initialState: CounterState = {
 
 
 
-  density:0
+  density: 0
 }
 
 export const goodsSlice = createSlice({
   name: 'goods',
   initialState,
   reducers: {
+
+    changeAnimSwitcher: (state) => {
+      state.animSwitcher = !state.animSwitcher
+    },
+
+
     /////Первоначальный объект
     changeOriginalStaf: (state, action: PayloadAction<object | null>) => {
       state.originalStaf = action.payload
@@ -143,7 +153,8 @@ export const goodsSlice = createSlice({
   },
 })
 
-export const { changeOriginalStaf,
+export const { changeAnimSwitcher,
+  changeOriginalStaf,
   changeAveragePrice,
   changePurchasePrice,
   changeCommission,
@@ -163,6 +174,8 @@ export const { changeOriginalStaf,
 } = goodsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
+export const AnimSwitcher = (state: RootState) => state.goods.animSwitcher
+
 export const OriginalStaf = (state: RootState) => state.goods.originalStaf
 
 export const Length = (state: RootState) => state.goods.length
