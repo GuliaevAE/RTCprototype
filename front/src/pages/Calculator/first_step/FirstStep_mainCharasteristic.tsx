@@ -93,9 +93,9 @@ const FirstStep_calculator_mainCharasteristic = () => {
             {dimensions(data.options).length === 3 && <div className='flex inputBox' >
                 <div className='w-[50%]'>Объем (м³)</div>
                 <div className='flex-1 flex '>
-                    <div className='input_3d w-full'> <input type="number" className='w-full' value={volume} /></div>
+                    <input type="number" disabled className='w-full' value={volume} />
                 </div>
-            </div>}
+            </div >}
 
 
             <div className='flex inputBox'>
