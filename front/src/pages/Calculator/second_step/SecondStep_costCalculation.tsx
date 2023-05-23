@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useAppDispatch, useAppSelector, } from '../../../store/hooks'
-import { Weight, Commission, AveragePrice, PurchasePrice, Volume, Curs_dol, Curs_uan, Rate_per_kg, Price_uan_from, Price_uan_to, changeCost_price_from, changeCost_price_to } from '../../../store/slices/goodsSlice';
+import { Weight, Commission, AveragePrice, PurchasePrice, Volume, Curs_dol, Curs_uan, Rate_per_kg, Price_uan_from, Price_uan_to, changeCost_price_from, changeCost_price_to, Density } from '../../../store/slices/goodsSlice';
 import Card from '../Card';
 import Icon_cross from '../../../components/Icon_cross';
 
@@ -27,8 +27,14 @@ const SecondStep_card_costCalculation = () => {
     const расчетВеса_добор15 = useMemo(() => вес + вес * 0.15, [вес])
     const ставка_кг_м3 = useAppSelector(Rate_per_kg)
     const вРублях = useMemo(() => ставка_кг_м3 * Курс_доллар_16, [Курс_доллар_16, ставка_кг_м3])
-    const ставка_едТовара = useMemo(() => вРублях * расчетВеса_добор15, [вРублях, расчетВеса_добор15])
+    // const плотность = useMemo(() => расчетВеса_добор15 / объем, [объем, расчетВеса_добор15])
+    const плотность = useAppSelector(Density)
 
+
+    const ставка_едТовара = useMemo(() => {
+        return плотность < 100 ? вРублях * объем :
+            вРублях * расчетВеса_добор15
+    }, [вРублях, объем, плотность, расчетВеса_добор15])
     const цена_юани_от = useAppSelector(Price_uan_from)
 
     const цена_юани_до = useAppSelector(Price_uan_to)
@@ -42,7 +48,6 @@ const SecondStep_card_costCalculation = () => {
 
 
 
-    const плотность = useMemo(() => расчетВеса_добор15 / объем, [объем, расчетВеса_добор15])
 
     const страховка_доставка_от = useMemo(() => себестоимость_от * 0.01, [себестоимость_от])
     const страховка_доставка_до = useMemo(() => себестоимость_до * 0.01, [себестоимость_до])

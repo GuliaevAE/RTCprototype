@@ -28,8 +28,16 @@ const FirstStep_card_costCalculation = () => {
     const расчетВеса_добор15 = useMemo(() => вес + вес * 0.15, [вес])
     const ставка_кг_м3 = useAppSelector(Rate_per_kg)
 
+    const плотность = useMemo(() => расчетВеса_добор15 / объем, [объем, расчетВеса_добор15])
+    useEffect(() => {
+        dispatch(changeDensity(плотность))
+    }, [dispatch, плотность])
+
     const вРублях = useMemo(() => ставка_кг_м3 * Курс_доллар_16, [Курс_доллар_16, ставка_кг_м3])
-    const ставка_едТовара = useMemo(() => вРублях * расчетВеса_добор15, [вРублях, расчетВеса_добор15])
+    const ставка_едТовара = useMemo(() => {
+        return плотность < 100 ? вРублях * объем :
+            вРублях * расчетВеса_добор15
+    }, [вРублях, объем, плотность, расчетВеса_добор15])
 
     const цена_юани_от = useMemo(() => (ценаОриентир - (ставка_едТовара + стоимостьУпаковки)) / Курс_юань_надбавка / 1.01, [Курс_юань_надбавка, ставка_едТовара, стоимостьУпаковки, ценаОриентир])
     // const [цена_юани_до, setцена_юани_до] = useState(0)
@@ -39,10 +47,7 @@ const FirstStep_card_costCalculation = () => {
     //////////////////////////
 
 
-    const плотность = useMemo(() => расчетВеса_добор15 / объем, [объем, расчетВеса_добор15])
-    useEffect(() => {
-        dispatch(changeDensity(плотность))
-    }, [dispatch, плотность])
+
 
     const страховка_доставка_от = useMemo(() => себестоимость_от * 0.01, [себестоимость_от])
     // const страховка_доставка_до = useMemo(() => себестоимость_до * 0.01, [себестоимость_до])
@@ -65,7 +70,7 @@ const FirstStep_card_costCalculation = () => {
 
     return (
         <Card additionalClass='flex-auto'>
-          <Icon_cross clickFunction={() => setSwitch(!switcher)}/>
+            <Icon_cross clickFunction={() => setSwitch(!switcher)} />
             <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Расчет себестоимости </span>
             <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
                 {switcher && <div className='text-[0.7rem] tableItem'>
