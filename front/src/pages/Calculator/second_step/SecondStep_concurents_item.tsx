@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '../Card';
-import { useState, useMemo } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
-import { Length, Width, Height, Commission, AveragePrice, Cost_price_to, Cost_price_from, deleteConcurent } from '../../../store/slices/goodsSlice';
+import { useState } from 'react';
+import { useAppDispatch } from '../../../store/hooks'
+import { deleteConcurent } from '../../../store/slices/goodsSlice';
 import SecondStep_concurents_item_rent from './SecondStep_concurents_item_rent';
 import Icon_cross from '../../../components/Icon_cross';
 
 
 const SecondStep_concurents_item = ({ conc }: { conc: { index: string, name: string } }) => {
-const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
     const [средняяЦена, setСредняяЦена] = useState<number>(0)
 
     return (

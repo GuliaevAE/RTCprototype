@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useState, useMemo } from 'react';
 import { useAppSelector } from '../../../store/hooks'
 import { Length, Width, Height, Commission, Cost_price_to, Cost_price_from } from '../../../store/slices/goodsSlice';
@@ -49,7 +49,7 @@ const SecondStep_concurents_item_rent = ({ tag, средняяЦена }: { tag:
                 <div>{tag === 'from' ? 'Рентабельность от, %.' : 'Рентабельность до, %.'}</div>
                 <div>{Number(Рентабельность_проценты) !== -Infinity ? Рентабельность_проценты : 0}</div>
             </div>
-           
+
         </div>
     );
 };
