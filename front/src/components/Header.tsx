@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { AnimSwitcher, OriginalStaf, changeAnimSwitcher, changeOriginalStaf } from '../store/slices/goodsSlice';

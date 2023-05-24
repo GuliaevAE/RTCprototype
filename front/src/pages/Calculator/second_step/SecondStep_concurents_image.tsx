@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetching } from '../api';
 import { useAppDispatch } from '../../../store/hooks';
 import { changeAddedConcurents } from '../../../store/slices/goodsSlice';
@@ -6,8 +6,9 @@ import { changeAddedConcurents } from '../../../store/slices/goodsSlice';
 const SecondStep_concurents_image = ({ index }: { index: string }) => {
     const [name, setName] = useState<string>('')
     const [img, setImg] = useState('')
-    const [count, setCount] = useState<number>(1)
-    const [maxCount, setMax] = useState<number>(0)
+    // const [count, setCount] = useState<number>(1)
+    const count = 1
+    // const [maxCount, setMax] = useState<number>(0)
 
     const dispatch = useAppDispatch()
     useEffect(() => {
@@ -15,7 +16,7 @@ const SecondStep_concurents_image = ({ index }: { index: string }) => {
         fetching(String(index))
             .then(res => {
                 setImg(res.links.link_images.images_link)
-                setMax(res.media.photo_count)
+                // setMax(res.media.photo_count)
                 setName(res.imt_name)
             }
             )
