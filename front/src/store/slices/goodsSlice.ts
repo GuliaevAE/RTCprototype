@@ -27,13 +27,12 @@ interface CounterState {
 
   rate_per_kg: number,
 
-
   cost_price_from: number,
   cost_price_to: number,
 
+  density: number,
 
-
-  density: number
+  addedConcurents: {index:string, name:string}[]
 
 }
 
@@ -67,9 +66,9 @@ const initialState: CounterState = {
   cost_price_from: 0,
   cost_price_to: 0,
 
+  density: 0,
 
-
-  density: 0
+  addedConcurents:[]
 }
 
 export const goodsSlice = createSlice({
@@ -150,6 +149,18 @@ export const goodsSlice = createSlice({
       state.density = action.payload
     },
 
+    changeAddedConcurents: (state, action: PayloadAction<{index:string, name:string}>)=>{
+      !state.addedConcurents.find(x=>x.index === action.payload.index) && state.addedConcurents.push(action.payload)
+    },
+
+    deleteConcurent: (state, action: PayloadAction<string>)=>{
+      state.addedConcurents = state.addedConcurents.filter(x=>x.index!==action.payload)
+    },
+
+    deleteAllConcurents:(state)=>{
+      state.addedConcurents = []
+    }
+
   },
 })
 
@@ -170,7 +181,10 @@ export const { changeAnimSwitcher,
   changeRate_per_kg,
   changeCost_price_from,
   changeCost_price_to,
-  changeDensity
+  changeDensity,
+  changeAddedConcurents,
+deleteAllConcurents,
+deleteConcurent
 } = goodsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
@@ -201,6 +215,9 @@ export const Cost_price_from = (state: RootState) => state.goods.cost_price_from
 export const Cost_price_to = (state: RootState) => state.goods.cost_price_to
 
 export const Density = (state: RootState) => state.goods.density
+
+export const AddedConcurents = (state: RootState) => state.goods.addedConcurents
+
 
 
 

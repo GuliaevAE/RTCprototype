@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { AnimSwitcher, OriginalStaf, changeAnimSwitcher, changeOriginalStaf } from '../store/slices/goodsSlice';
+import { fetching } from '../pages/Calculator/api';
 
 const Header = () => {
     const dispatch = useAppDispatch()
@@ -10,23 +11,9 @@ const Header = () => {
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const target = e.currentTarget
-        console.log(target.originalStaf_input.value)
-
-        const all = target.originalStaf_input.value
-        const part = target.originalStaf_input.value.slice(0, target.originalStaf_input.value.length - 3)
-        const vol = target.originalStaf_input.value.slice(0, target.originalStaf_input.value.length - 5)
-
-
-
-        for (let i = 1; i <= 10; i++) {
-            const ind = String(i).length === 1 ? '0' + i : i
-            try {
-                const res = await axios.get(`https://basket-${ind}.wb.ru/vol${vol}/part${part}/${all}/info/ru/card.json`)
-                res.data.links = { link_wb: `https://www.wildberries.ru/catalog/${all}/detail.aspx`, link_mp: `https://mpstats.io/wb/item/${all}` }
-                return dispatch(changeOriginalStaf(res.data))
-            } catch (error) {
-                console.log(error)
-            }
+        const resData = await   fetching(target.originalStaf_input.value)
+        if (resData) {
+            dispatch(changeOriginalStaf(resData))
         }
     }
 

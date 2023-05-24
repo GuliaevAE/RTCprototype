@@ -11,7 +11,7 @@ const Card = ({ children, additionalClass }: ICardProps) => {
 const animSwicther = useAppSelector(AnimSwitcher)
 
     return (
-        <div onMouseMove={(e)=>cardHoverFunction(e, animSwicther)} onMouseLeave={(e)=>cardLeaveFunction(e, animSwicther)} className={` ${additionalClass?additionalClass:''}   background_shadow_animation  flex flex-col p-3`}>
+        <div onMouseMove={(e)=>cardHoverFunction(e, animSwicther)} onMouseLeave={(e)=>cardLeaveFunction(e, animSwicther)} className={` background_shadow_animation  flex flex-col p-3 ${additionalClass?additionalClass:''}`}>
           <div className='glass'></div>
           
             {children}

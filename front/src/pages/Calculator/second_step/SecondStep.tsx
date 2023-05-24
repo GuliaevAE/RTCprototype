@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../../store/hooks';
 import SecondStep_WBrent_from from './SecondStep_WBrent_from';
 import SecondStep_costCalculation from './SecondStep_costCalculation';
 import SecondStep_WBrent_to from './SecondStep_WBrent_to';
+import SecondStep_concurents from './SecondStep_concurents';
 
 const SecondStep = () => {
     const dispatch = useAppDispatch()
@@ -26,13 +27,13 @@ const SecondStep = () => {
                             <div className='flex-1 text-[.8rem] w-[max-content]'>
                                 Цена от (ю)
                             </div>
-                           <div className='input_3d'> <input type="number" className='' onInput={inputHandler_price_uan_from} /></div>
+                            <div className='input_3d'> <input type="number" className='' onInput={inputHandler_price_uan_from} /></div>
                         </div>
                         <div className='flex'>
                             <div className='flex-1 text-[.8rem] w-[max-content]'>
                                 Цена до (ю)
                             </div>
-                         <div className='input_3d'>   <input type="number" className='' onInput={inputHandler_price_uan_to} /></div>
+                            <div className='input_3d'>   <input type="number" className='' onInput={inputHandler_price_uan_to} /></div>
                         </div>
 
                     </Card>
@@ -45,7 +46,7 @@ const SecondStep = () => {
                     <SecondStep_WBrent_from />
                     <SecondStep_WBrent_to />
                 </div>
-
+               <SecondStep_concurents/>
             </div>
 
         </section>
