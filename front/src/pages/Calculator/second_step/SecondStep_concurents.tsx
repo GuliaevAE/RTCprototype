@@ -21,11 +21,7 @@ const SecondStep_concurents = () => {
     }, [originalStaf])
 
 
-    const visibleConcurents = useMemo(() => {
-        console.log('visibleConcurents')
-
-        return concurents.slice(concurentsPage, concurentsPage + 4)
-    }, [concurents, concurentsPage])
+    const visibleConcurents = useMemo(() => concurents.slice(concurentsPage, concurentsPage + 4), [concurents, concurentsPage])
 
 
     return (
@@ -41,7 +37,7 @@ const SecondStep_concurents = () => {
                     </div>
                     <SecondStep_concurents_image index={originalStaf.nm_id} />
                 </div>
-                <div className='flex-auto flex flex-col '>
+                <div className='flex-auto flex flex-col gap-[4vmin]'>
                     <div className='bg-[] flex justify-center mb-2 border-b-[1px] border-solid border-[black]'>
                         <span>Конкуренты</span>
                     </div>
