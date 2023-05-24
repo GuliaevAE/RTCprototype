@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useAppSelector } from '../../../store/hooks';
-import { AddedConcurents, OriginalStaf } from '../../../store/slices/goodsSlice';
+import { AddedConcurents, OriginalStaf, TConcurent } from '../../../store/slices/goodsSlice';
 import axios from 'axios';
 import SecondStep_concurents_image from './SecondStep_concurents_image';
 import { Icon } from '@iconify/react';
@@ -37,7 +37,7 @@ const SecondStep_concurents = () => {
                     </div>
                     <SecondStep_concurents_image index={originalStaf.nm_id} />
                 </div>
-                <div className='flex-auto flex flex-col gap-[4vmin]'>
+                <div className='flex-auto flex flex-col '>
                     <div className='bg-[] flex justify-center mb-2 border-b-[1px] border-solid border-[black]'>
                         <span>Конкуренты</span>
                     </div>
@@ -53,8 +53,8 @@ const SecondStep_concurents = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex flex-wrap gap-2'>
-                {addedConcurents && addedConcurents.map((conc: { index: string, name: string }) => <SecondStep_concurents_item conc={conc} />)}
+            <div className='flex flex-wrap gap-[4vmin] mt-2'>
+                {addedConcurents && addedConcurents.map((conc: TConcurent) => <SecondStep_concurents_item conc={conc} />)}
             </div>
         </>
     );

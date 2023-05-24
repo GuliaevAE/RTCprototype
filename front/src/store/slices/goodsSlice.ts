@@ -3,6 +3,10 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
 
+export type TConcurent ={index:string, name:string, links:{link_wb:string, link_mp:string}}
+
+
+
 interface CounterState {
 
   animSwitcher: boolean,
@@ -32,7 +36,7 @@ interface CounterState {
 
   density: number,
 
-  addedConcurents: {index:string, name:string}[]
+  addedConcurents: TConcurent[]
 
 }
 
@@ -149,7 +153,7 @@ export const goodsSlice = createSlice({
       state.density = action.payload
     },
 
-    changeAddedConcurents: (state, action: PayloadAction<{index:string, name:string}>)=>{
+    changeAddedConcurents: (state, action: PayloadAction<TConcurent>)=>{
       !state.addedConcurents.find(x=>x.index === action.payload.index) && state.addedConcurents.push(action.payload)
     },
 
