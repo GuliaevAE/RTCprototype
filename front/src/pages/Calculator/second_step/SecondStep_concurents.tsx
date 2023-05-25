@@ -10,7 +10,7 @@ import SecondStep_concurents_item from './SecondStep_concurents_item';
 const SecondStep_concurents = () => {
     const originalStaf = useAppSelector(OriginalStaf)
     const [concurents, setConcurents] = useState<number[]>([])
-    const [concurentsPage, setPage] = useState<number>(1)
+    const [concurentsPage, setPage] = useState<number>(0)
     const addedConcurents = useAppSelector(AddedConcurents)
     useEffect(() => {
         if (originalStaf) {
@@ -39,15 +39,15 @@ const SecondStep_concurents = () => {
                 </div>
                 <div className='flex-auto flex flex-col '>
                     <div className='bg-[] flex justify-center mb-2 border-b-[1px] border-solid border-[black]'>
-                        <span>Конкуренты {concurents.length?'('+concurents.length+'шт)':''}</span>
+                        <span>Конкуренты {concurents.length?'('+concurentsPage+'-'+(concurentsPage+4)+' из '  +concurents.length+'шт)':''}</span>
                     </div>
                     <div className='flex  justify-between h-full'>
-                        <div className={`bg-[] flex border-solid border-[1px] border-[black] transition-all ${!(concurentsPage > 1) && 'opacity-0'}`} onClick={() => concurentsPage > 1 && setPage(prev => prev - 4)}>
+                        <div className={`flex cursor-pointer ${!(concurentsPage > 1) && 'opacity-0'}`} onClick={() => concurentsPage > 1 && setPage(prev => prev - 4)}>
                             <Icon icon="ant-design:left-outlined" className='self-center h-full' width={'5vw'} />
                         </div>
                         {visibleConcurents.map(conc => <SecondStep_concurents_image index={String(conc)} />)}
 
-                        <div className={`bg-[] flex border-solid border-[1px] border-[black] transition-all ${!(concurentsPage <= concurents.length) && 'opacity-0'}`} onClick={() => concurentsPage <= concurents.length && setPage(prev => prev + 4)}>
+                        <div className={`flex cursor-pointer ${!(concurentsPage+4 < concurents.length) && 'opacity-0'}`} onClick={() => concurentsPage+4 < concurents.length && setPage(prev => prev + 4)}>
                             <Icon icon="ant-design:right-outlined" className='self-center h-full' width={'5vw'} />
                         </div>
                     </div>

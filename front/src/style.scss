@@ -83,7 +83,34 @@ input::-webkit-inner-spin-button {
     }
 }
 
+.imgContainer {
+   
+    img{
+        object-fit: cover;
+        
+    }
 
+    &::after {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: black;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &.active::after {
+        animation: imgContainer_after_anim .8s ease forwards
+    }
+}
+
+@keyframes imgContainer_after_anim {
+    to {
+        width: 0%;
+    }
+}
 
 
 .animation_missingCharasteristic {
@@ -296,10 +323,12 @@ input::-webkit-inner-spin-button {
 .header_links {
     font-weight: 600;
     transform-style: preserve-3d;
+
     // animation: header_links_rotate 5s ease;
-    div{
+    div {
         transform: translateZ(1rem);
     }
+
     div:nth-child(1) {
         a {
             background: purple;
