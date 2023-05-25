@@ -14,7 +14,7 @@ const SecondStep_concurents = () => {
     const addedConcurents = useAppSelector(AddedConcurents)
     useEffect(() => {
         if (originalStaf) {
-            axios.get(`https://in-similar.wildberries.ru/?nm=${originalStaf.nm_id}`)
+            axios.get(`https://in-visual-similar.wildberries.ru/?nm=${originalStaf.nm_id}`)
                 .then(res => setConcurents(res.data))
         }
 
@@ -42,12 +42,12 @@ const SecondStep_concurents = () => {
                         <span>Конкуренты</span>
                     </div>
                     <div className='flex  justify-between h-full'>
-                        <div className='bg-[] flex border-solid border-[1px] border-[black]' onClick={() => concurentsPage >= 0 && setPage(prev => prev - 4)}>
+                        <div className={`bg-[] flex border-solid border-[1px] border-[black] transition-all ${!(concurentsPage > 1) && 'opacity-0'}`} onClick={() => concurentsPage > 1 && setPage(prev => prev - 4)}>
                             <Icon icon="ant-design:left-outlined" className='self-center h-full' width={'5vw'} />
                         </div>
                         {visibleConcurents.map(conc => <SecondStep_concurents_image index={String(conc)} />)}
 
-                        <div className='bg-[] flex border-solid border-[1px] border-[black]' onClick={() => concurentsPage <= concurents.length && setPage(prev => prev + 4)}>
+                        <div className={`bg-[] flex border-solid border-[1px] border-[black] transition-all ${!(concurentsPage <= concurents.length/4) && 'opacity-0'}`} onClick={() => concurentsPage <= concurents.length/4 && setPage(prev => prev + 4)}>
                             <Icon icon="ant-design:right-outlined" className='self-center h-full' width={'5vw'} />
                         </div>
                     </div>

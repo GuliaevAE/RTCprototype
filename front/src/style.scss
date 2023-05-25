@@ -302,19 +302,15 @@ input::-webkit-inner-spin-button {
     }
     div:nth-child(1) {
         a {
-            background: aquamarine;
+            background: purple;
             color: var(--backColor);
-
-
         }
     }
 
     div:nth-child(2) {
         a {
-            background: purple;
-            color: var(--backColor);
-
-
+            background: aquamarine;
+            color: black;
         }
     }
 
