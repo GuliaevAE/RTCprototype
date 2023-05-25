@@ -39,7 +39,7 @@ const SecondStep_concurents = () => {
                 </div>
                 <div className='flex-auto flex flex-col '>
                     <div className='bg-[] flex justify-center mb-2 border-b-[1px] border-solid border-[black]'>
-                        <span>Конкуренты {concurents.length?'('+concurentsPage+'-'+(concurentsPage+4)+' из '  +concurents.length+'шт)':''}</span>
+                        <span>Конкуренты {concurents.length?'('+(concurentsPage+1)+'-'+(concurentsPage+4)+' из '  +concurents.length+'шт)':''}</span>
                     </div>
                     <div className='flex  justify-between h-full'>
                         <div className={`flex cursor-pointer ${!(concurentsPage > 1) && 'opacity-0'}`} onClick={() => concurentsPage > 1 && setPage(prev => prev - 4)}>
