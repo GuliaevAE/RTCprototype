@@ -12,10 +12,10 @@ const SecondStep_concurents_item = ({ conc }: { conc: TConcurent }) => {
     const [средняяЦена, setСредняяЦена] = useState<number>(0)
 
     return (
-        <Card>
+        <Card additionalClass='w-[31.5%]'>
             <Icon_cross clickFunction={() => dispatch(deleteConcurent(conc.index))} />
 
-            <div className='flex flex-col'>
+            <div className='flex flex-col '>
                 <div className='text-[0.7rem] flex flex-col relative z-[1]'>
                     <div className='header_links flex  gap-5 w-[fit-content]'>
                         <div className=''>
