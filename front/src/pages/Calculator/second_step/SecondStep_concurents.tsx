@@ -39,7 +39,7 @@ const SecondStep_concurents = () => {
                 </div>
                 <div className='flex-auto flex flex-col '>
                     <div className='bg-[] flex justify-center mb-2 border-b-[1px] border-solid border-[black]'>
-                        <span>Конкуренты</span>
+                        <span>Конкуренты {concurents.length?'('+concurents.length+'шт)':''}</span>
                     </div>
                     <div className='flex  justify-between h-full'>
                         <div className={`bg-[] flex border-solid border-[1px] border-[black] transition-all ${!(concurentsPage > 1) && 'opacity-0'}`} onClick={() => concurentsPage > 1 && setPage(prev => prev - 4)}>
@@ -47,7 +47,7 @@ const SecondStep_concurents = () => {
                         </div>
                         {visibleConcurents.map(conc => <SecondStep_concurents_image index={String(conc)} />)}
 
-                        <div className={`bg-[] flex border-solid border-[1px] border-[black] transition-all ${!(concurentsPage <= concurents.length/4) && 'opacity-0'}`} onClick={() => concurentsPage <= concurents.length/4 && setPage(prev => prev + 4)}>
+                        <div className={`bg-[] flex border-solid border-[1px] border-[black] transition-all ${!(concurentsPage <= concurents.length) && 'opacity-0'}`} onClick={() => concurentsPage <= concurents.length && setPage(prev => prev + 4)}>
                             <Icon icon="ant-design:right-outlined" className='self-center h-full' width={'5vw'} />
                         </div>
                     </div>
