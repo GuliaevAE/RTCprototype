@@ -65,7 +65,7 @@ const SecondStep_concurents_image = ({ index }: { index: string }) => {
                     <div className='overflow-hidden'>
                         {maxCount &&
                             <div className='flex flex-col self-center gap-1 absolute top-[3px] right-[3px] z-[3]'>
-                                {Array(maxCount).fill('').map((_x, key) => <div key={'img' + key} onClick={() => setCount(key + 1)}
+                                {Array(maxCount<6?maxCount:5).fill('').map((_x, key) => <div key={'img' + key} onClick={() => setCount(key + 1)}
                                     className={`aspect-square border-[1px] border-solid border-[black] rounded-[20%]  ${key + 1 === count ? 'bg-[white]' : 'bg-[black]'} h-[10px] hover:scale-[2] hover:bg-[purple] transition-all `} />)}
                             </div>}
                         <img onMouseMove={imageHoverFunction} onMouseLeave={imageLeaveFunction} src={img + count + '.jpg'} alt={img + count} />
