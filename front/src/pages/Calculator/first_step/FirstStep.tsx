@@ -17,30 +17,28 @@ const FirstStep_card = () => {
 
     const cardTitle = useRef<any>(null)
 
-    const cardTitle_animation = () => {
-        const target = cardTitle.current
-        const letters = "ABCDEFGHILMNOPQRSTUVWXYZ"
-        let iterations = 0;
-        const interval = setInterval(() => {
-            target.innerText = target.innerText.split('')
-                .map((_letter: string, index: number) => {
-                    if (index < iterations) return target.dataset.value[index]
-                    return letters[Math.floor(Math.random() * 24)]
-                }).join('')
+    // const cardTitle_animation = () => {
+    //     const target = cardTitle.current
+    //     const letters = "ABCDEFGHILMNOPQRSTUVWXYZ"
+    //     let iterations = 0;
+    //     const interval = setInterval(() => {
+    //         target.innerText = target.innerText.split('')
+    //             .map((_letter: string, index: number) => {
+    //                 if (index < iterations) return target.dataset.value[index]
+    //                 return letters[Math.floor(Math.random() * 24)]
+    //             }).join('')
 
-            if (iterations >= target.dataset.value.length) clearInterval(interval)
+    //         if (iterations >= target.dataset.value.length) clearInterval(interval)
 
-            iterations += 1
-        }, 50)
-    }
+    //         iterations += 1
+    //     }, 50)
+    // }
 
-    // useEffect(() => {
-    //     cardTitle_animation()
-    // }, [])
+ 
 
     return (
         <article className='FirstStep_card relative flex flex-col gap-[10px] p-2  text-[grey]  text-[.8rem] '>
-            <span data-value={data.imt_name} onClick={cardTitle_animation} ref={cardTitle} className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
+            <span data-value={data.imt_name}  ref={cardTitle} className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
 
 
             <div className='flex flex-col gap-[4vmin]'>

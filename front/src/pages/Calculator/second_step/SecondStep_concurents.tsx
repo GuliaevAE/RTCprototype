@@ -5,6 +5,7 @@ import axios from 'axios';
 import SecondStep_concurents_image from './SecondStep_concurents_image';
 import { Icon } from '@iconify/react';
 import SecondStep_concurents_item from './SecondStep_concurents_item';
+// import SecondStep_concurents_item2 from './SecondStep_concurents_item2';
 
 
 const SecondStep_concurents = () => {
@@ -17,12 +18,9 @@ const SecondStep_concurents = () => {
             axios.get(`https://in-visual-similar.wildberries.ru/?nm=${originalStaf.nm_id}`)
                 .then(res => setConcurents(res.data))
         }
-
     }, [originalStaf])
 
-
     const visibleConcurents = useMemo(() => concurents.slice(concurentsPage, concurentsPage + 4), [concurents, concurentsPage])
-
 
     return (
         <>
