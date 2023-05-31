@@ -56,11 +56,9 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     dispatch(changeWeight(+data.options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)').value.split(' ')[0] + 40)) :
                     data.options.find((x: IDataOption_item) => x.name === 'Вес с упаковкой (кг)') ?
                         dispatch(changeWeight(+data.options.find((x: IDataOption_item) => x.name === 'Вес с упаковкой (кг)').value.split(' ')[0] * 1000)) :
-                        data.options.find((x: IDataOption_item) => x.name === 'Вес с упаковкой (г)') ?
-                            dispatch(changeWeight(+data.options.find((x: IDataOption_item) => x.name === 'Вес с упаковкой (г)').value.split(' ')[0] * 1000 + 40)) :
+                        data.options.find((x: IDataOption_item) => x.name === 'Вес без упаковки (кг)') ?
+                            dispatch(changeWeight(+data.options.find((x: IDataOption_item) => x.name === 'Вес без упаковки (кг)').value.split(' ')[0] * 1000 + 40)) :
                             dispatch(changeWeight(0))
-
-
 
             data.options.find((x: IDataOption_item) => x.name === 'Длина упаковки') ?
                 dispatch(changeLength(+data.options.find((x: IDataOption_item) => x.name === 'Длина упаковки').value.split(' ')[0]))
@@ -131,7 +129,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     Средняя цена
                 </div>
                 <div className='flex-1 flex '>
-                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeAveragePrice(Number(e.target.value)))}  value={averagePrice?averagePrice:''} /></div>
+                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeAveragePrice(Number(e.target.value)))} value={averagePrice ? averagePrice : ''} /></div>
                 </div>
             </div>
             <div className='flex inputBox'>

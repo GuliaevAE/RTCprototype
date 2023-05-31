@@ -10,10 +10,14 @@ const FirstStep_missingCharasteristic = () => {
 
     const data = useAppSelector(OriginalStaf)
 
-
     const missingСharacteristics = (options: { name: string, value: string }[]) => {
         const arr: string[] = []
-        !options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)') && !options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)') && arr.push('Вес товара')
+        !options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)')
+            && !options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)')
+            && !options.find((x: IDataOption_item) => x.name === 'Вес с упаковкой (кг)')
+            && !options.find((x: IDataOption_item) => x.name === 'Вес без упаковки (кг)')
+            && arr.push('Вес товара')
+
         !options.find((x: IDataOption_item) => x.name === 'Длина упаковки') && arr.push('Длина упаковки')
         !options.find((x: IDataOption_item) => x.name === 'Ширина упаковки') && arr.push('Ширина упаковки')
         !options.find((x: IDataOption_item) => x.name === 'Высота упаковки') && arr.push('Высота упаковки')
