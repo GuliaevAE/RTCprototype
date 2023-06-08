@@ -21,7 +21,7 @@ const Header = () => {
         <header className='w-full pt-[1vmin]  flex relative z-[1] gap-4 flex-wrap'>
             <form onSubmit={event => submitHandler(event)} className='flex flex-auto gap-[10px] md:flex-none '>
                 <input id='originalStaf_input' className='border-[.1px] border-solid border-[black] text-[white] bg-[black] px-2 rounded-[5px] w-full' placeholder='Идентификатор WB' type="text" />
-                <button className='border-[.1px] border-solid border-[black] text-[black] rounded-[5px] p-1 px-2 '>Найти</button>
+                <button className='border-[.1px] border-solid border-[black] text-[black] bg-[white] rounded-[5px] p-1 px-2 '>Найти</button>
             </form>
            
             
