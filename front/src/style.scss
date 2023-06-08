@@ -365,7 +365,7 @@ input::-webkit-inner-spin-button {
 header {
     transform: translateY(-101%);
     opacity: 0;
-    animation: header_animation 1s ease 1s forwards;
+    animation: header_animation 1s ease .3s forwards;
 
 
     @keyframes header_links_rotate {
