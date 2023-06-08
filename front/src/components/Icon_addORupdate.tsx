@@ -15,8 +15,8 @@ const Icon_addORupdate = ({ clickFunction, status }: IIconProps) => {
          flex justify-center align-center z-[3]
            hover:scale-[1.2]   transition-all
            ${status && 'text-[green]'}`}>
-            {itemId ? <Icon height="20" icon="bi:save-fill" className='rounded-[50%]' />
-                : <Icon height="20" icon="iconamoon:file-add-fill" />}
+            {itemId ? <Icon height="20" icon="fluent:save-24-filled" className='rounded-[50%]' />
+                : <Icon height="20" icon="gridicons:add" />}
         </div>
     );
 };

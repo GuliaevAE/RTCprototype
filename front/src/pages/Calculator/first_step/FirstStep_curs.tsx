@@ -12,12 +12,16 @@ const FirstStep_calculator_curs = () => {
     const [dol_value, setDol] = useState<null | number>(null)
     const [uan_value, setUan] = useState<null | number>(null)
 
+    const [message, setMessage] = useState<string>('')
+
     const saveCurs = () => {
         localStorage.setItem('dol', String(curs_dol))
         localStorage.setItem('uan', String(curs_uan))
-        console.log('curs saved')
+        setMessage(' сохранен!')
     }
-
+    useEffect(()=>{
+        message&&setTimeout(()=>setMessage(''),1000)
+    },[message])
 
     useEffect(() => {
         const saved_dol = localStorage.getItem('dol')
@@ -39,10 +43,10 @@ const FirstStep_calculator_curs = () => {
     return (
         <>
             <div onClick={() => saveCurs()} className='absolute top-[0px] right-[0px] flex justify-center align-center text-[rgb(239, 239, 239)]'>
-                <Icon height="18" icon="ic:save" className='' />
+                <Icon height="20" icon="fluent:save-24-filled" className='' />
             </div>
-            <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Курс</span>
-           {dol_value&& <div className='flex inputBox'>
+            <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Курс {message}</span>
+            {dol_value && <div className='flex inputBox'>
                 <div className='w-[50%]'>
                     Доллар
                 </div>
@@ -50,7 +54,7 @@ const FirstStep_calculator_curs = () => {
                     <div className='input_3d w-[100%]'><input type="number" className='w-[100%] ' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCurs_dol(Number(e.target.value)))} defaultValue={dol_value} /></div>
                 </div>
             </div>}
-            {uan_value&&<div className='flex inputBox'>
+            {uan_value && <div className='flex inputBox'>
                 <div className='w-[50%]'>
                     Юаня
                 </div>
