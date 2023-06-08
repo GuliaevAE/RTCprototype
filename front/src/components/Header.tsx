@@ -1,46 +1,21 @@
-import React from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { AnimSwitcher, OriginalStaf, changeAnimSwitcher, changeOriginalStaf } from '../store/slices/goodsSlice';
-import { fetching } from '../pages/Calculator/api';
+import { Link, useLocation } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { AnimSwitcher, changeAnimSwitcher } from '../store/slices/goodsSlice';
 
 const Header = () => {
+    const loc = useLocation()
     const dispatch = useAppDispatch()
-    const originalStaf = useAppSelector(OriginalStaf)
     const animSwitcher = useAppSelector(AnimSwitcher)
-    const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const target = e.currentTarget
-        const resData = await   fetching(target.originalStaf_input.value)
-        if (resData) {
-            dispatch(changeOriginalStaf(resData))
-        }
-    }
-
-
 
     return (
-        <header className='w-full pt-[3vmin] px-[5vmin] flex relative z-[1] gap-4 flex-wrap'>
-            <form onSubmit={event => submitHandler(event)} className='flex flex-auto md:flex-none'>
-                <input id='originalStaf_input' className='border-[.1px] border-solid border-[black] text-[white] bg-[black] px-2 rounded-l w-full' placeholder='Идентификатор WB' type="text" />
-                <button className='border-[.1px] border-solid border-[black] text-[black] rounded-r p-1 px-2 '>Найти</button>
-            </form>
-            {originalStaf && <div className='header_links flex gap-4'>
-                <div className=''>
-                    <a target="_blank" href={originalStaf.links.link_wb} className='leading-[2rem]'>WB</a>
-                </div>
-                <div className=''>
-                    <a target="_blank" href={originalStaf.links.link_mp} className='leading-[2rem]'>MP</a>
-                </div>
-
-            </div>}
-            <div onClick={() => dispatch(changeAnimSwitcher())}
-                className={`${animSwitcher ? 'bg-[black] text-[white]' : ' text-[black]'} border-solid border-[2px] border-[black] px-3 py-2 fixed top-[3vmin] right-[4vmin] font-[600] rounded-[5px]`}>
-                <span>{animSwitcher ? 'ON' : 'OFF'}</span>
+        <div className='flex gap-2 text-[1.1rem] font-[600] fixed z-[99] left-[0] px-[5vmin] top-[4vmin] w-full '>
+            <Link to={'/catalog'}><span className={`px-2 py-1 border-solid border-[black] border-[2px] rounded-[10px] ${loc.pathname === '/catalog' ? 'bg-[black] text-[white]' : 'bg-[white] text-[black]'} `}>Каталог</span></Link>
+            <Link to={'/'}><span className={`px-2 py-1 border-solid border-[black] border-[2px] rounded-[10px] ${loc.pathname === '/' ? 'bg-[black] text-[white]' : 'bg-[white] text-[black]'} `}>Калькулятор</span></Link>
+            <div className=''>
+                <span onClick={() => dispatch(changeAnimSwitcher())} className={`${animSwitcher ? 'bg-[black] text-[white]' : 'bg-[white] text-[black]'} border-solid border-[2px] border-[black] px-2 py-1  rounded-[10px]`}>{animSwitcher ? 'ON' : 'OFF'}</span>
             </div>
-
-
-        </header>
+        </div>
     );
 };
 
-export default Header; 
+export default Header;

@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../../store/hooks'
-import { OriginalStaf } from '../../../store/slices/goodsSlice';
+import { OriginalStaf, Weight } from '../../../store/slices/goodsSlice';
 
 interface IDataOption_item {
     name: string,
@@ -9,13 +9,14 @@ interface IDataOption_item {
 const FirstStep_missingCharasteristic = () => {
 
     const data = useAppSelector(OriginalStaf)
-
+    const weight = useAppSelector(Weight)
     const missingСharacteristics = (options: { name: string, value: string }[]) => {
         const arr: string[] = []
         !options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)')
             && !options.find((x: IDataOption_item) => x.name === 'Вес товара без упаковки (г)')
             && !options.find((x: IDataOption_item) => x.name === 'Вес с упаковкой (кг)')
             && !options.find((x: IDataOption_item) => x.name === 'Вес без упаковки (кг)')
+            && !weight
             && arr.push('Вес товара')
 
         !options.find((x: IDataOption_item) => x.name === 'Длина упаковки') && arr.push('Длина упаковки')

@@ -5,25 +5,28 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  
+
 } from "react-router-dom";
-import Header from './components/Header'
-import FirstStep from './pages/Calculator/Calculator';
+import Calculator from './pages/Calculator/Calculator';
+import Catalog from './pages/Catalog/Catalog';
+import Header from './components/Header';
+// import Catalog_dinamicPage from './pages/Catalog/Catalog_dinamicPage';
 
 function App() {
 
   return (
     <>
       <Router>
-        <Header/>
-        <main className=''>
+        <Header />
+        <main className='mt-[6vmin]'>
           <Routes >
-            <Route path="/" element={<FirstStep />} />
-            <Route path="/asd" element={<div></div>} />
+            <Route path="/" element={<Calculator />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/catalog/:itemId" element={<Calculator />} />
           </Routes>
         </main>
-      </Router> 
-      </>
+      </Router>
+    </>
   )
 }
 

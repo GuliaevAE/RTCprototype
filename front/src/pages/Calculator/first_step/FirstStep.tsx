@@ -1,8 +1,8 @@
-import {  useRef } from 'react';
+import { useRef } from 'react';
 import { useAppSelector } from '../../../store/hooks'
 import { OriginalStaf } from '../../../store/slices/goodsSlice';
 
-import FirstStep_WBrent from './FirstStep_WBrent';
+// import FirstStep_WBrent from './FirstStep_WBrent';
 import FirstStep_costCalculation from './FirstStep_costCalculation';
 
 
@@ -34,17 +34,27 @@ const FirstStep_card = () => {
     //     }, 50)
     // }
 
- 
 
     return (
         <article className='FirstStep_card relative flex flex-col gap-[10px] p-2  text-[grey]  text-[.8rem] '>
-            <span data-value={data.imt_name}  ref={cardTitle} className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data && data.imt_name}</span>
-
+            <span data-value={data.imt_name} ref={cardTitle} className='card_title text-[#fff7f7] font-[600] text-[1.8rem]'>{data.nm_id} | {data.imt_name}</span>
 
             <div className='flex flex-col gap-[4vmin]'>
-                <div className='card_title text-[1.2rem]'>
-                    Первый этап
+                <div className='flex gap-[2vmin]'>
+                    <div className='card_title text-[1.2rem]'>
+                        Первый этап
+                    </div>
+                    {data && <div className='header_links flex gap-[3vmin] '>
+                        <div className=''>
+                            <a target="_blank" href={data.links.link_wb} className='leading-[2rem]'>WB</a>
+                        </div>
+                        <div className=''>
+                            <a target="_blank" href={data.links.link_mp} className='leading-[2rem]'>MP</a>
+                        </div>
+
+                    </div>}
                 </div>
+
                 <div className=' flex gap-[4vmin] flex-wrap flex-col md:flex-row'>
                     <Card additionalClass='flex-1'>
                         <FirstStep_mainCharasteristic />
@@ -59,7 +69,7 @@ const FirstStep_card = () => {
                     </Card>
                 </div>
                 <div className='flex gap-[4vmin] flex-col md:flex-row'>
-                    <FirstStep_WBrent />
+                    {/* <FirstStep_WBrent /> */}
                     <FirstStep_costCalculation />
                 </div>
             </div>

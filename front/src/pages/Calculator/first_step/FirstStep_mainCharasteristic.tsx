@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks'
-import { OriginalStaf, Weight, Length, Width, Height, Volume, AveragePrice, Rate_per_kg, changeVolume, changePurchasePrice, changeRate_per_kg, Density } from '../../../store/slices/goodsSlice';
+import { OriginalStaf, Weight, Length, Width, Height, Volume, AveragePrice, Rate_per_kg, changeVolume, changeRate_per_kg, Density, Commission } from '../../../store/slices/goodsSlice';
 import { changeWeight, changeLength, changeWidth, changeHeight, changeCommission, changeAveragePrice } from '../../../store/slices/goodsSlice';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
 interface IDataOption_item {
@@ -25,15 +27,18 @@ const FirstStep_calculator_mainCharasteristic = () => {
     const averagePrice = useAppSelector(AveragePrice)
     const rate_per_kg = useAppSelector(Rate_per_kg)
 
-    const dimensions = (options: { name: string, value: string }[]) => {
-        const arr: { name: string, value: string }[] = []
-        const subArr: string[] = ['Длина упаковки', 'Ширина упаковки', 'Высота упаковки']
-        subArr.forEach(characteristic => {
-            const target = options.find((x: IDataOption_item) => x.name === characteristic)
-            if (target) arr.push(target)
-        })
-        return arr
-    }
+    const commission = useAppSelector(Commission)
+
+    // const dimensions = (options: { name: string, value: string }[]) => {
+    //     const arr: { name: string, value: string }[] = []
+    //     const subArr: string[] = ['Длина упаковки', 'Ширина упаковки', 'Высота упаковки']
+    //     subArr.forEach(characteristic => {
+    //         const target = options.find((x: IDataOption_item) => x.name === characteristic)
+    //         if (target) arr.push(target)
+    //     })
+    //     return arr
+    // }
+
 
 
     useEffect(() => {
@@ -49,6 +54,15 @@ const FirstStep_calculator_mainCharasteristic = () => {
             // } else {
             //     dispatch(changeWeight(0))
             // }
+
+            // dispatch(changeCommission(0))
+            // dispatch(changeAveragePrice(0))
+            // dispatch(changePurchasePrice(0))
+            // dispatch(changeRate_per_kg(0))
+            // dispatch(changeLength(0))
+            // dispatch(changeWidth(0))
+            // dispatch(changeHeight(0))
+
 
             data.options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)') ?
                 dispatch(changeWeight(+data.options.find((x: IDataOption_item) => x.name === 'Вес товара с упаковкой (г)').value.split(' ')[0])) :
@@ -69,19 +83,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
             data.options.find((x: IDataOption_item) => x.name === 'Высота упаковки') ?
                 dispatch(changeHeight(+data.options.find((x: IDataOption_item) => x.name === 'Высота упаковки').value.split(' ')[0]))
                 : dispatch(changeHeight(0))
-
-
-
-
-
-
         }
-
-        dispatch(changeCommission(0))
-        dispatch(changeAveragePrice(0))
-        dispatch(changePurchasePrice(0))
-        dispatch(changeRate_per_kg(0))
-
     }, [data, dispatch])
 
 
@@ -89,7 +91,20 @@ const FirstStep_calculator_mainCharasteristic = () => {
         dispatch(changeRate_per_kg(Number(e.target.value)))
     }
 
-
+    const { itemId } = useParams()
+    useEffect(() => {
+        if (itemId) {
+            const key = itemId.split('-')[1]
+            axios.get(`https://natalyshando.ru/catalog_item?row=${key}`)
+                .then(res => {
+                    // console.log('res.data[5]', res.data[0])
+                    res.data[0][11] && dispatch(changeWeight(Number(res.data[0][11].replaceAll(',', '.')) * 1000))
+                    res.data[0][4] && dispatch(changeCommission(Number(res.data[0][4].replaceAll(',', '.'))))
+                    res.data[0][5] && dispatch(changeAveragePrice(Number(res.data[0][5].split('').filter((x: string) => /[0-9]/.test(x)).join(''))))
+                    res.data[0][15] && dispatch(changeRate_per_kg(Number(res.data[0][15].replaceAll(',', '.'))))
+                })
+        }
+    }, [dispatch, itemId])
 
     const density = useAppSelector(Density)
 
@@ -108,12 +123,12 @@ const FirstStep_calculator_mainCharasteristic = () => {
             </div>
 
 
-            {dimensions(data.options).length === 3 && <div className='flex inputBox' >
+             <div className='flex inputBox' >
                 <div className='w-[50%]'>Объем (м³)</div>
                 <div className='flex-1 flex '>
                     <input type="number" disabled className='w-full' value={volume} />
                 </div>
-            </div >}
+            </div >
 
 
             <div className='flex inputBox'>
@@ -137,7 +152,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     Комиссия (%)
                 </div>
                 <div className='flex-1 flex '>
-                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value) / 100))} /></div>
+                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value)))} value={commission ? Number(commission) : ''} /></div>
                 </div>
             </div>
 

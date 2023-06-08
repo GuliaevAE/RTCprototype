@@ -8,8 +8,8 @@ interface IIconProps {
 const Icon_cross = ({clickFunction}:IIconProps) => {
     return (
         <div onClick={clickFunction} className=' absolute top-[5px] right-[5px] flex justify-center align-center z-[3]
-        hover:scale-[1.2]  hover:rotate-[45deg] transition-all'>
-            <Icon height="24" icon="ic:baseline-plus" className='' />
+        hover:scale-[1.2] rotate-[45deg]  transition-all'>
+            <Icon height="24" icon="ic:round-add" className='' />
         </div>
     );
 };

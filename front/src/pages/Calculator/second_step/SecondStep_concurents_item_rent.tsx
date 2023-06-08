@@ -45,7 +45,7 @@ const SecondStep_concurents_item_rent = ({ tag, средняяЦена }: { tag:
     const Рентабельность_проценты = useMemo(() => (Рентабельность_доля * 100).toFixed(2), [Рентабельность_доля])
     return (
         <div className='scrollTable flex-1'>
-            <div className='text-[0.7rem] tableItem'>
+            <div className='text-[0.7rem] tableItem flex-1'>
                 <div>{tag === 'from' ? 'Рентабельность от, %.' : 'Рентабельность до, %.'}</div>
                 <div>{Number(Рентабельность_проценты) !== -Infinity ? Рентабельность_проценты : 0}</div>
             </div>

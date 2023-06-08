@@ -36,8 +36,6 @@ const SecondStep_concurents_image = ({ index }: { index: string }) => {
         const targetPos = currentTarget.getBoundingClientRect()
         const gorizontalPercentage = (event.clientX - targetPos.x) / targetPos.width * 100
         const verticalPercentage = (event.clientY - targetPos.y) / targetPos.height * 50
-
-        console.log(gorizontalPercentage, verticalPercentage)
         currentTarget.animate({
             height: '200%',
             transform: `translateY(-${verticalPercentage}%)`,

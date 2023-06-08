@@ -1,14 +1,21 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks'
-import { Length, Width, Height, Commission, AveragePrice, changePurchasePrice } from '../../../store/slices/goodsSlice';
+import { Length, Width, Height, Commission, AveragePrice, changePurchasePrice, OriginalStaf } from '../../../store/slices/goodsSlice';
 import Card from '../Card';
-import Icon_cross from '../../../components/Icon_cross';
+import Icon_cross from '../../../components/Icon_vision';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import Icon_addORupdate from '../../../components/Icon_addORupdate';
 
 
 
 const FirstStep_card_table_WBrent = () => {
+    const originalStaf = useAppSelector(OriginalStaf)
+
     const dispatch = useAppDispatch()
     const [switcherForOptionalParameters, setSwitch] = useState<boolean>(false)
+
+    const [status, setStatus] = useState<boolean>(false)
 
     ///табличные параметры 
     const Длинна = useAppSelector(Length)
@@ -27,7 +34,7 @@ const FirstStep_card_table_WBrent = () => {
     const Фот = 0.100000000000013
     const Проценты_маркетинг_продвижение = 0.0100000000000001
 
-    const ЛогистикаотОбъема = объем <= 5 ? СреднийТарифЛогистики : СреднийТарифЛогистики + (объем - 5) * СреднийТарифЛогистики / 10
+    const ЛогистикаотОбъема = useMemo(() => объем <= 5 ? СреднийТарифЛогистики : СреднийТарифЛогистики + (объем - 5) * СреднийТарифЛогистики / 10, [объем])
     const ЛогистикаНа1Заказ_абсолют = ((ЛогистикаотОбъема * 1.15) + 0.13 * 33) / 0.87
     const ценаЗакупа = useMemo(() => средняяЦена - 0.35 * средняяЦена - Упаковка - ((налоги + комиссия) * средняяЦена) - ЛогистикаНа1Заказ_абсолют, [ЛогистикаНа1Заказ_абсолют, комиссия, средняяЦена])
 
@@ -51,200 +58,77 @@ const FirstStep_card_table_WBrent = () => {
 
 
 
-    const tableScroll = () => {
-        // if (e.currentTarget) {
-        //     const target = e.currentTarget as HTMLElement
-        //     target.scrollLeft += e.deltaY
-        // }
-    }
+
 
     useEffect(() => {
         ценаЗакупа && dispatch(changePurchasePrice(ценаЗакупа))
     }, [dispatch, ценаЗакупа])
 
 
+    const { itemId } = useParams()
+
+    const addORupdateFunction = () => {
+        if (status) return
+        const arr = [
+            originalStaf.imt_name, '', originalStaf.nm_id, средняяЦена, ценаЗакупа, комиссия, Длинна, Ширина, Высота, объем, СреднийТарифЛогистики, ЛогистикаотОбъема, ЛогистикаНа1Заказ_абсолют, ЛогистикаНа1Заказ_проценты, хранение, товар, налоги, брак, Упаковка, УпаковкаПлюсМашина
+        ]
+
+        if (itemId) {
+            axios.post('https://natalyshando.ru/change_rentaWB_item', {
+                data: arr,
+                key: itemId.split('-')[1]
+            }).then(res => res.data.status && setStatus(true)).catch(res => console.log(res))
+        }
+        else {
+            axios.post('https://natalyshando.ru/add_rentaWB_item', {
+                data: arr,
+
+            }).then(res => res.data.status && setStatus(true)).catch(res => console.log(res))
+        }
+
+    }
+
+
+
+
     return (
         <>
             <Card additionalClass=''>
                 <Icon_cross clickFunction={() => setSwitch(!switcherForOptionalParameters)} />
+                <Icon_addORupdate clickFunction={addORupdateFunction} status={status} />
 
                 <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'> Калькулятор рента WB</span>
-                <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
-                    <div className='text-[0.7rem] tableItem'>
+                <div className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
+                    <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Средняя цена</div>
                         <div>{средняяЦена}</div>
                     </div>
-                    <div className='text-[0.7rem] tableItem'>
+                    <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Цена закупа</div>
                         <div>{ценаЗакупа}</div>
                     </div>
-                    <div className='text-[0.7rem] tableItem'>
+                    <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Объем, л</div>
                         <div>{объем}</div>
                     </div>
-                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Средний тариф логистики по складам</div>
                         <div>{СреднийТарифЛогистики}</div>
                     </div>}
-                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Логистика от объёма</div>
                         <div>{ЛогистикаотОбъема}</div>
                     </div>}
-                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Рентабельность_доля</div>
                         <div>{Рентабельность_доля ? Рентабельность_доля : 0}</div>
                     </div>}
-                    <div className='text-[0.7rem] tableItem'>
+                    <div className='text-[0.7rem] tableItem flex-1'>
                         <div className='animation_missingCharasteristic'>Рентабельность, %.</div>
                         <div>{Number(Рентабельность_проценты) ? Рентабельность_проценты : 0}</div>
                     </div>
-
-                    {/* <table  >
-                        <tr>
-                            <td className='text-[0.7rem] '>Средняя цена</td>
-                            <td className='text-[0.7rem] '>Цена закупа</td>
-                            <td className='text-[0.7rem] '>Комиссия</td>
-                            <td className='text-[0.7rem] '>Д, см</td>
-                            <td className='text-[0.7rem] '>Ш, см</td>
-                            <td className='text-[0.7rem] '>В, см</td>
-                            <td className='text-[0.7rem] '>Объем, л</td>
-                            <td className='text-[0.7rem] '>Средний тариф логистики по складам</td>
-                            <td className='text-[0.7rem] '>Логистика от объёма</td>
-                            <td className='text-[0.7rem] '>Рентабельность_доля</td>
-                            <td className='text-[0.7rem] '>Рентабельность от цены продажи, руб.</td>
-                            <td className='text-[0.7rem] '>Рентабельность, %.</td>
-                            <td className='text-[0.7rem] '>Валовая прибыль, %.</td>
-                            <td className='text-[0.7rem] '>Маржинальная прибыль</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input disabled value={средняяЦена} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={ценаЗакупа} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={комиссия} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Длинна} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Ширина} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Высота} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={объем} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={СреднийТарифЛогистики} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={ЛогистикаотОбъема} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Рентабельность_доля} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Рентабельность_от_продажи} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Рентабельность_проценты} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={ВаловаяПрибыль} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={МаржинальнаяПрибыль} type="number" />
-                            </td>
-                        </tr>
-
-
-
-                    </table> */}
                 </div>
             </Card>
-            {/* {switcherForOptionalParameters && <Card >
-                <h2>Скрытые вычисления</h2>
-                <div onWheel={tableScroll} className='scrollTable overflow-x-auto'>
-                    <table>
-                        <tr>
-                            <td>Логистика на 1 заказ в абсолютном значении</td>
-                            <td>Логистика на 1 заказ в %</td>
-                            <td>Хранение</td>
-                            <td>Товар</td>
-                            <td>Налоги</td>
-                            <td>брак</td>
-                            <td>Упаковка (все, что на складе происходит + машина до вб), знач.</td>
-                            <td>Упаковка (все, что на складе происходит + машина до вб), %</td>
-                            <td>Отзывы логистика + склад, знач.</td>
-                            <td>Отзывы логистика + склад, %</td>
-                            <td>Отзывы комиссия + налоги</td>
-                            <td>Отзывы фиксы в %</td>
-                            <td>Отзывы</td>
-                            <td>Фот</td>
-                            <td>% на маркетинговое продвижение</td>
-                            <td>Расход на маркетинговое продвижение</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input disabled value={ЛогистикаНа1Заказ_абсолют} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={ЛогистикаНа1Заказ_проценты} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={хранение} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={товар} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={налоги} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={брак} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Упаковка} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={УпаковкаПлюсМашина} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Отзывы_логистикаПлюсСклад} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Отзывы_логистикаПлюсСклад_проценты} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Отзывы_комиссияПлюсНалоги} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Отзывы_фиксы_проценты} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Отзывы} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Фот} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Проценты_маркетинг_продвижение} type="number" />
-                            </td>
-                            <td>
-                                <input disabled value={Расход_маркетинг_продвижение} type="number" />
-                            </td>
-                        </tr>
-
-                    </table>
-
-                </div>
-            </Card>} */}
-
-
         </>
 
     );

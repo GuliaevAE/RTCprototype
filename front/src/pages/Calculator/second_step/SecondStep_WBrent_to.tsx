@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { useAppSelector } from '../../../store/hooks'
 import { Length, Width, Height, Commission, AveragePrice, Cost_price_to } from '../../../store/slices/goodsSlice';
 import Card from '../Card';
-import Icon_cross from '../../../components/Icon_cross';
+import Icon_cross from '../../../components/Icon_vision';
 
 
 
@@ -61,31 +61,31 @@ const SecondStep_card_table_WBrent = () => {
 
                 <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Калькулятор рента WB (цена до)</span>
                 <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
-                    <div className='text-[0.7rem] tableItem'>
+                    <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Средняя цена</div>
                         <div>{средняяЦена}</div>
                     </div>
-                    <div className='text-[0.7rem] tableItem'>
+                    <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Цена закупа</div>
                         <div>{ценаЗакупа}</div>
                     </div>
-                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Объем, л</div>
                         <div>{объем}</div>
                     </div>}
-                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Средний тариф логистики по складам</div>
                         <div>{СреднийТарифЛогистики}</div>
                     </div>}
-                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Логистика от объёма</div>
                         <div>{ЛогистикаотОбъема}</div>
                     </div>}
-                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem'>
+                    {switcherForOptionalParameters && <div className='text-[0.7rem] tableItem flex-1'>
                         <div>Рентабельность_доля</div>
                         <div>{Рентабельность_доля!==-Infinity?Рентабельность_доля:0}</div>
                     </div>}
-                    <div className='text-[0.7rem] tableItem'>
+                    <div className='text-[0.7rem] tableItem flex-1'>
                         <div className='animation_missingCharasteristic'>Рентабельность, %.</div>
                         <div>{Number(Рентабельность_проценты)!==-Infinity?Рентабельность_проценты:0}</div>
                     </div> 

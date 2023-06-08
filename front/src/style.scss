@@ -1,5 +1,5 @@
 .scrollTable {
-    padding-bottom: 10px;
+    // padding-bottom: 10px;
 
 
     .tableItem {
@@ -67,7 +67,7 @@ input::-webkit-inner-spin-button {
 
 .FirstStep_card,
 .Second_card {
-    animation: FirstStep_card_open .8s ease;
+    animation: FirstStep_card_open 1s ease;
     z-index: 0;
 }
 
@@ -364,6 +364,7 @@ input::-webkit-inner-spin-button {
 
 header {
     transform: translateY(-101%);
+    opacity: 0;
     animation: header_animation 1s ease 1s forwards;
 
 
@@ -391,13 +392,14 @@ header {
 @keyframes header_animation {
     100% {
         transform: none;
+        opacity: 1;
     }
 }
 
 
 .circles {
     position: fixed;
-    top: 80px;
+    top: 110px;
     right: 15px;
     aspect-ratio: 1/1;
     min-height: 11vmin;
@@ -553,6 +555,18 @@ header {
             transform: rotateY(-270deg) rotateX(180deg) rotateZ(-90deg) translate3d(-0%, 50%, calc(var(--w) / 2));
 
         }
+
+    }
+}
+
+
+
+
+.icon_border {
+    box-shadow: inset 0 0 0 .8px rgb(2, 2, 2) ;
+   
+    &:hover {
+       
 
     }
 }

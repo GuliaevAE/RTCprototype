@@ -22,10 +22,10 @@ export async function fetching(index:string){
                 }
                 
             }
-            console.log('res', res)
+            console.log('resasdasdasa', res)
             return res.data
         } catch (error) {
-            console.log(error)
-        }
+            // console.log(error)
+        } 
     }
 }

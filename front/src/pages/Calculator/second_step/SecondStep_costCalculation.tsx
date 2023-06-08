@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useAppDispatch, useAppSelector, } from '../../../store/hooks'
 import { Weight, Commission, AveragePrice, PurchasePrice, Volume, Curs_dol, Curs_uan, Rate_per_kg, Price_uan_from, Price_uan_to, changeCost_price_from, changeCost_price_to, Density } from '../../../store/slices/goodsSlice';
 import Card from '../Card';
-import Icon_cross from '../../../components/Icon_cross';
+import Icon_cross from '../../../components/Icon_vision';
 
 const SecondStep_card_costCalculation = () => {
     const [switcher, setSwitch] = useState<boolean>(false)
@@ -78,103 +78,103 @@ const SecondStep_card_costCalculation = () => {
           <Icon_cross clickFunction={() => setSwitch(!switcher)}/>
             <span className='text-[rgb(239, 239, 239)] font-[700] text-[.9rem]'>Расчет себестоимости </span>
             <div onWheel={tableScroll} className='scrollTable overflow-x-auto flex gap-2 flex-wrap'>
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Комиссия</div>
                     <div>{комиссия}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Средняя цена</div>
                     <div>{средняяЦена}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Цена ориентир</div>
                     <div>{ценаОриентир}</div>
                 </div>}
-                <div className='text-[0.7rem] tableItem'>
+                <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Цена (ю) от</div>
                     <div>{цена_юани_от}</div>
                 </div>
-                <div className='text-[0.7rem] tableItem'>
+                <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Цена (ю) до</div>
                     <div>{цена_юани_до}</div>
                 </div>
-                <div className='text-[0.7rem] tableItem'>
+                <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Себестоимость (руб.)  от</div>
                     <div>{себестоимость_от}</div>
                 </div>
-                <div className='text-[0.7rem] tableItem'>
+                <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Себестоимость (руб.) до</div>
                     <div>{себестоимость_до}</div>
                 </div>
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Вес в кг</div>
                     <div>{вес}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Расчет веса с добором в 15%</div>
                     <div>{расчетВеса_добор15}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Расчет объема, м^3</div>
                     <div>{объем}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Расчет плотности</div>
                     <div>{плотность}</div>
                 </div>}
-                <div className='text-[0.7rem] tableItem'>
+                <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Ставка за кг/м3</div>
                     <div>{ставка_кг_м3}</div>
                 </div>
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>В рублях</div>
                     <div>{вРублях}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Ставка за ед товара</div>
                     <div>{ставка_едТовара}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Страховка на доставку (руб) от</div>
                     <div>{страховка_доставка_от}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Страховка на доставку (руб) до</div>
                     <div>{страховка_доставка_до}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Стоимость упаковки</div>
                     <div>{стоимостьУпаковки}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Доставка на 1 шт. от</div>
                     <div>{доставка_ед_от}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Доставка на 1 шт. до</div>
                     <div>{доставка_ед_до}</div>
                 </div>}
-                <div className='text-[0.7rem] tableItem'>
+                <div className='text-[0.7rem] tableItem flex-1'>
                     <div className='animation_missingCharasteristic'>Стоимость от (руб.)</div>
                     <div>{стоимость_от}</div>
                 </div>
-                <div className='text-[0.7rem] tableItem '>
+                <div className='text-[0.7rem] tableItem flex-1 '>
                     <div className='animation_missingCharasteristic'>Стоимость до (руб.)</div>
                     <div>{стоимость_до}</div>
                 </div>
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Курс доллара по ЦБ</div>
                     <div>{Курс_доллар}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Курс Юаня+16%</div>
                     <div>{Курс_юань}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Курс Юаня по сайту с надбавкой 0,25</div>
                     <div>{Курс_юань_надбавка}</div>
                 </div>}
-                {switcher && <div className='text-[0.7rem] tableItem'>
+                {switcher && <div className='text-[0.7rem] tableItem flex-1'>
                     <div>Курс доллара + 16%</div>
                     <div>{Курс_доллар_16}</div>
                 </div>}
