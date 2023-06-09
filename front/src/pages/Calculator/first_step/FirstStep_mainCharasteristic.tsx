@@ -152,7 +152,7 @@ const FirstStep_calculator_mainCharasteristic = () => {
                     Комиссия (%)
                 </div>
                 <div className='flex-1 flex '>
-                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value)))} value={commission ? Number(commission) : ''} /></div>
+                    <div className='input_3d w-full'> <input type="number" className='w-full' onInput={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCommission(Number(e.target.value)))} value={commission ? Number(commission) : 0} /></div>
                 </div>
             </div>
 
